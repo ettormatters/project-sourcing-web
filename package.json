@@ -1,0 +1,26 @@
+{
+  "name": "party",
+  "version": "1.0.0",
+  "description": "team : \"partyPeople\",   domain plan : \"party.people\",   due date : 8/15,   description : \"main project of shinernd & oeritas.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oeritas/partyPeople.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oeritas/partyPeople/issues"
+  },
+  "homepage": "https://github.com/oeritas/partyPeople#readme",
+  "dependencies": {
+    "next": "^6.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
