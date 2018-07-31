@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './Header'
+import Footer from './Footer'
 
 class Layout extends React.Component {
     render(){
@@ -7,7 +8,8 @@ class Layout extends React.Component {
             <div>
                 <Header />
                 {this.props.children}
-
+                <Footer />
+                
                 <style jsx>{`
                     div {
                         margin: 40px;

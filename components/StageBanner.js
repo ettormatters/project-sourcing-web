@@ -4,11 +4,11 @@ class StageBanner extends React.Component {
     render(){
         return(
             <div>
-                <img src="http://www.v3wall.com/wallpaper/1920_1080/1101/1920_1080_20110115093323292435.jpg"/>
+                <img src="https://wallpapercave.com/wp/jLw8Rbf.jpg"/>
                 <style jsx>{`
                     img {
-                        width: 1300px;
-                        height: 600px;
+                        width: 640px;
+                        height: 400px;
                     }
                 `}</style>
             </div>
