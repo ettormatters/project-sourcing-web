@@ -4,7 +4,7 @@ import CheckBox from '../components/CheckBox'
 class Category extends React.Component {
     render(){
         return (
-            <div className="category">
+            <div className="container-category">
                 <div>
                     <fieldset className="category-order">
                         <legend>Order</legend>
@@ -33,8 +33,9 @@ class Category extends React.Component {
                     </fieldset>
                 </div>
                 <style jsx>{`
-                    .category {
+                    .container-category {
                         margin: 10px;
+                        padding: 10px;
                         border: 1px solid black;
                     }
 

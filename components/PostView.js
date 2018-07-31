@@ -5,19 +5,14 @@ class PostView extends React.Component {
     render(){
         return(
             <div className="post-view">
-                <div className="post-desc">
-                    description here.
-                </div>
-                <div className="post-post">
-                    <Post/>
-                    <Post/>
-                    <Post/>
-                    <Post/>
-                </div>
+                <Post/>
+                <Post/>
+                
                 <style jsx>{`
                     .post-view {
-                        border: 1px solid grey;
+                        border: 1px solid black;
                         margin: 10px;
+                        padding: 10px;
                     }
                 `}</style>
             </div>

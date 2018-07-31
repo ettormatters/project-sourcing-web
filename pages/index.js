@@ -9,8 +9,10 @@ class Index extends React.Component {
         return(
             <Layout>
                 <StageBanner />
-                <Category />
-                <PostView />
+                <div className="container">
+                    <Category />
+                    <PostView />
+                </div>
             </Layout>
         );
     }

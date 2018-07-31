@@ -1,0 +1,16 @@
+{
+    "partyHead" : "",
+    "title" : "",
+    "data" : {
+        "oneLine" : "",
+        "desc" : "",
+        "hashtag" : "",
+        "meberNumber" : "",
+        "dueDate" : ""
+    },
+    "clap" : "",
+    "date" : {
+        "created" : "",
+        "editted" : ""
+    }
+}
