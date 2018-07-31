@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout'
 import StageBanner from '../components/StageBanner'
 import Category from '../components/Category'
-import Post from '../components/Post'
+import PostView from '../components/PostView'
 
 class Index extends React.Component {
     render(){
@@ -10,7 +10,7 @@ class Index extends React.Component {
             <Layout>
                 <StageBanner />
                 <Category />
-                <Post />
+                <PostView />
             </Layout>
         );
     }

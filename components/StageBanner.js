@@ -7,7 +7,7 @@ class StageBanner extends React.Component {
                 <img src="https://wallpapercave.com/wp/jLw8Rbf.jpg"/>
                 <style jsx>{`
                     img {
-                        width: 640px;
+                        width: 1200px;
                         height: 400px;
                     }
                 `}</style>
