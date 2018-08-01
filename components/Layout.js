@@ -12,13 +12,14 @@ class Layout extends React.Component {
                 
                 <style jsx>{`
                     div {
-                        margin: 0;
-                        padding: 0;
+                        margin-top: 30px;
                     }
-
-                    /*this.props.childeren에서 category와 postview 묶어내기,
-                    display: flex; justify-content: center;*/
-            
+                    
+                    .container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                    }            
                 `}</style>
             </div>
         );

@@ -10,9 +10,10 @@ class Post extends React.Component {
                 <style jsx>{`
                    .post {
                        border: 1px solid black;
-                       margin: 5px;
+                       margin: 10px;
                        padding: 5px;
-                       width: 350px;
+                       min-width: 350px; /*screen size*/
+                       max-width: 749px; /*안늘어남*/
                    }
                    /*viewport, Responsive*/
                 `}</style>

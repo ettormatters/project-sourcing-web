@@ -4,7 +4,7 @@ class Footer extends React.Component {
     render(){
         return(
             <div className="footer">
-                <div>
+                <div className="footer-item">
                     PARTYPPLE Inc.
                 </div>
 
@@ -14,6 +14,10 @@ class Footer extends React.Component {
                         border-top: 1px solid #e6e6e6;
                         padding: 10px 10% 40px 10%;
                         background-color: #f2f2f2;
+                    }
+
+                    .footer-item {
+                        color: #b3b3b3;
                     }
 
                     @media screen and (max-width: 992px) {
