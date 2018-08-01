@@ -43,8 +43,8 @@ class Category extends React.Component {
 
                     .category-order {
                         display: flex;
-                        flex-direction: row; /*적용안됨*/
-                        padding: 10px;
+                        flex-wrap: wrap;
+                        align-items: center;
                     }
 
                     .category-list {

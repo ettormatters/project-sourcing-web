@@ -21,41 +21,52 @@ class Header extends React.Component {
                 </div>
                 <style jsx>{`
                     .header {
-                        padding: 40px 10% 10px 10%;
+                        z-index: 1000;
+                        padding: 10px 10% 10px 10%;
                         display: flex;
-                        flex-direction: row; /*적용안됨*/
+                        align-items: center;
                         margin-bottom: 30px;
-                        /*shadowed border, margin 해제?*/
-                        /*sticky*/
-                        /*opacity*/
-                    }
+                        /*scrolled + opacity*/
+                        background-color: white;
+                        opacity: 0.9;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+                        position: -webkit-sticky;
+                        position: sticky;
+                        top: 0;
+                     }
 
                     .logo {
                         flex: 20%;
                     }
 
                     .navigation {
-                        flex: 80%;
                         display: flex;
                         justify-content: flex-end;
                     }
 
                     a {
                         margin: 15px;
+                        color: #666666;
+                        transition: color 0.2s ease;
                         text-decoration: none;
                         /*state color*/
                     }
 
+                    a:hover {
+                        color: black;
+                    }
+
                     @media screen and (max-width: 992px) {
                         .header {
-                            padding: 40px 40px 10px 40px;
+                            padding: 10px 40px 10px 40px;
                         }
                     }
                     
                     @media screen and (max-width: 600px) {
                         .header {
-                            padding: 40px 10px 10px 10px;
+                            padding: 10px 10px 10px 10px;
                         }
+                        /*a tag*/
                     }
                 `}</style>
             </div>
