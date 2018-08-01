@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import StageBanner from '../components/StageBanner'
 import Category from '../components/Category'
 import PostView from '../components/PostView'
+const fakeData = require('../assets/fakeData.js');
 
 class Index extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class Index extends React.Component {
                 { id: "11", val: "game", text: "Game", checked:false },
                 { id: "12", val: "activity", text: "Activity", checked:false }
             ],
-            
+            posts : fakeData
         };
 
         this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
@@ -38,6 +39,21 @@ class Index extends React.Component {
 
     componentWillMount(){
         console.log(">1componentWillMount");
+        async function dataCall (){
+            try {
+                /*console.log("here");
+                await fetch("")
+                    .then(res => res.json())
+                    .then(data => console.log(data))*/
+                //const data = Users.findOne({}).exec();
+                //user.name = 'zero';
+                //user = await user.save();
+                //user = await Users.findOne({ gender: 'm' }).exec();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        dataCall();
     }
 
     componentDidMount(){
@@ -60,8 +76,9 @@ class Index extends React.Component {
     _orderButtonOnPress (event) {
         console.log(event.target);
     }
-
+    
     _checkBoxOnChange (event) {
+        console.log(this.state.posts.default)
         const checked = event.target.checked;
         const id = event.target.id;
         if(checked==true){
@@ -83,7 +100,7 @@ class Index extends React.Component {
                 <StageBanner />
                 <div className="container">
                     <Category order={this.state.order} list={this.state.list} onChange={this._checkBoxOnChange} onClick={this._orderButtonOnPress}/>
-                    <PostView />
+                    <PostView posts={this.state.posts.default} />
                 </div>
             </Layout>
         );
