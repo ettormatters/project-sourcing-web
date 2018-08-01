@@ -3,20 +3,16 @@ import React from 'react'
 class CheckBox extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {checked: false};
+        this.state = {
+        };
       }
 
     render(){
         return(
-                <div className={this.props.className}>
-                    <input type={this.props.type} id={this.props.value} name={this.props.name} value={this.props.value} />
-                    <label htmlFor={this.props.value}>{this.props.text}</label>
-
+                <div className="category-list-item">
+                    <input type="checkbox" id={this.props.id} onChange={this.props.onChange}/>
+                    <label htmlFor={this.props.id}>{this.props.text}</label>
                     <style jsx>{`
-                        .category-order-item {
-                            color: red;
-                        }
-
                         .category-list-item {
                             color: blue;
                         }
@@ -26,4 +22,8 @@ class CheckBox extends React.Component {
     }
 }
 
+
+
 export default CheckBox
+
+//name={this.props.name} value={this.props.value}

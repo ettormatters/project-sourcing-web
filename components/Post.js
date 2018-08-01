@@ -5,7 +5,7 @@ class Post extends React.Component {
         return(
             <div>
                 <div className="post">
-                    Post
+                    Post props
                 </div>
                 
                 <style jsx>{`
