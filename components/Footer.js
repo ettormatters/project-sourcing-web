@@ -10,7 +10,22 @@ class Footer extends React.Component {
 
                 <style jsx>{`
                     .footer {
-                        border-top: 1px solid black;
+                        margin-top: 30px;
+                        border-top: 1px solid #e6e6e6;
+                        padding: 10px 10% 40px 10%;
+                        background-color: #f2f2f2;
+                    }
+
+                    @media screen and (max-width: 992px) {
+                        .footer {
+                            padding: 10px 40px 40px 40px;
+                        }
+                    }
+                    
+                    @media screen and (max-width: 600px) {
+                        .footer {
+                            padding: 10px 10px 40px 10px;
+                        }
                     }
                 `}</style>
             </div>

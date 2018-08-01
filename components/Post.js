@@ -13,7 +13,9 @@ class Post extends React.Component {
                        border: 1px solid black;
                        margin: 5px;
                        padding: 5px;
+                       width: 350px;
                    }
+                   /*viewport, Responsive*/
                 `}</style>
             </div>
         );

@@ -34,8 +34,9 @@ class Category extends React.Component {
                 </div>
                 <style jsx>{`
                     .container-category {
-                        margin: 10px;
+                        margin: 10px 10px 10px 10%;
                         padding: 10px;
+                        width: 200px;
                         border: 1px solid black;
                     }
 
@@ -47,6 +48,18 @@ class Category extends React.Component {
 
                     .category-list {
                         padding: 10px;
+                    }
+
+                    @media screen and (max-width: 992px) {
+                        .container-category {
+                            margin: 40px 40px 10px 40px;
+                        }
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .container-category {
+                            margin: 40px 10px 10px 10px;
+                        }
                     }
                 `}</style>
             </div>
