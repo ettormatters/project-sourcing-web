@@ -5,10 +5,11 @@ class PostView extends React.Component {
     render(){
         return(
             <div className="post-view">
-                <Post/>
-                <Post/>
-                <Post/>
-                
+                {this.props.posts.map((post, i) => {
+                    return (
+                        <Post key={i} data={JSON.stringify(post,null,2)}/>
+                    )
+                })}
                 <style jsx>{`
                     .post-view {
                         margin: 10px 10% 10px 10px;
@@ -36,5 +37,3 @@ class PostView extends React.Component {
 }
 
 export default PostView
-
-//mapping data -> render

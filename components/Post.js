@@ -5,9 +5,8 @@ class Post extends React.Component {
         return(
             <div>
                 <div className="post">
-                    Post props
+                    {this.props.data}
                 </div>
-                
                 <style jsx>{`
                    .post {
                        border: 1px solid black;

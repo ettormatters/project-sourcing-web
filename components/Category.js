@@ -9,28 +9,21 @@ class Category extends React.Component {
                 <div>
                     <fieldset className="category-order">
                         <legend>Order</legend>
-                        <OrderButton id="recent" text="Recently"/>
-                        <OrderButton id="high-clapped" text="High Clapped"/>
-                        <OrderButton id="d-day" text="D-Day"/>
-                        <OrderButton id="verified" text="Verified"/>
+                        {this.props.order.map((orderItem, i) => {
+                            return (
+                                <OrderButton key={i} id={orderItem.id} text={orderItem.text} onClick={this.props.onClick} />
+                            )
+                        })}
                     </fieldset>
                 </div>
                 <div>
                     <fieldset className="category-list">
                         <legend>List</legend>
-                        <CheckBox id={this.props.list[0].id} text="Something New" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[1].id} text="Side Project" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[2].id} text="Club" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[3].id} text="Competition" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[4].id} text="Study" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[5].id} text="Business" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[6].id} text="Body Training" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[7].id} text="Music" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[8].id} text="Video" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[9].id} text="Art" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[10].id} text="Travel" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[11].id} text="Game" onChange={this.props.onChange}/>
-                        <CheckBox id={this.props.list[12].id} text="Activity" onChange={this.props.onChange}/>
+                        {this.props.list.map((listItem, i) => {
+                            return (
+                                <CheckBox key={i} id={listItem.id} text={listItem.text} onChange={this.props.onChange} />
+                            )
+                        })}
                     </fieldset>
                 </div>
                 <style jsx>{`
