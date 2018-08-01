@@ -4,7 +4,7 @@ class OrderButton extends React.Component {
     render(){
         return(
             <div className="category-order-item">
-                <button type="button" id={this.props.id}>{this.props.text}</button>
+                <button type="button" id={this.props.id} onClick={this.props.onClick}>{this.props.text}</button>
                 <style jsx>{`
                     .category-order-item {
                     
