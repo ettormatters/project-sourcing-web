@@ -1,4 +1,5 @@
 import React from 'react'
+import OrderButton from '../components/OrderButton'
 import CheckBox from '../components/CheckBox'
 
 class Category extends React.Component {
@@ -8,28 +9,28 @@ class Category extends React.Component {
                 <div>
                     <fieldset className="category-order">
                         <legend>Order</legend>
-                        <CheckBox type="radio" className="category-order-item" name="category-order" value="recent" text="Recently"/>
-                        <CheckBox type="radio" className="category-order-item" name="category-order" value="high-clapped" text="High Clapped"/>
-                        <CheckBox type="radio" className="category-order-item" name="category-order" value="d-day" text="D-Day"/>
-                        <CheckBox type="radio" className="category-order-item" name="category-order" value="verified" text="Verified"/>
+                        <OrderButton id="recent" text="Recently"/>
+                        <OrderButton id="high-clapped" text="High Clapped"/>
+                        <OrderButton id="d-day" text="D-Day"/>
+                        <OrderButton id="verified" text="Verified"/>
                     </fieldset>
                 </div>
                 <div>
                     <fieldset className="category-list">
                         <legend>List</legend>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="somethingNew" text="Something New"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="side-project" text="Side Project"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="club" text="Club"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="competition" text="Competition"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="study" text="Study"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="business" text="Business"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="body-training" text="Body Training"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="music" text="Music"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="video" text="Video"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="art" text="Art"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="travel" text="Travel"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="game" text="Game"/>
-                        <CheckBox type="checkbox" className="category-list-item" name="category-list" value="activity" text="Activity"/>
+                        <CheckBox id={this.props.list[0].id} text="Something New" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[1].id} text="Side Project" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[2].id} text="Club" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[3].id} text="Competition" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[4].id} text="Study" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[5].id} text="Business" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[6].id} text="Body Training" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[7].id} text="Music" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[8].id} text="Video" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[9].id} text="Art" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[10].id} text="Travel" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[11].id} text="Game" onChange={this.props.onChange}/>
+                        <CheckBox id={this.props.list[12].id} text="Activity" onChange={this.props.onChange}/>
                     </fieldset>
                 </div>
                 <style jsx>{`

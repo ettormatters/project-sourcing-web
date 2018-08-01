@@ -2,9 +2,10 @@
     "partyHead" : "",
     "title" : "",
     "data" : {
+        "category":[""],
         "oneLine" : "",
         "desc" : "",
-        "hashtag" : "",
+        "hashtag" : [""],
         "meberNumber" : "",
         "dueDate" : ""
     },
