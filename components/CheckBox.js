@@ -4,7 +4,7 @@ class CheckBox extends React.Component {
     render(){
         return(
             <div className="category-list-item">
-                <input type="checkbox" id={this.props.id} onChange={this.props.onChange}/>
+                <input type="checkbox" id={this.props.id} onChange={this.props.boxChange}/>
                 <label htmlFor={this.props.id}>{this.props.text}</label>
                 <style jsx>{`
                     .category-list-item {
