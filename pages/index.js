@@ -112,7 +112,7 @@ class Index extends React.Component {
                 <style jsx>{`
                     .container {
                         display: flex;
-                        align-items: center;
+                        align-items: flex-start;
                     }
                 `} </style>
             </Layout>

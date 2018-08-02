@@ -12,11 +12,11 @@ class Header extends React.Component {
                     <Link href="/">
                         <a>Stage</a>
                     </Link>
-                    <Link href="/profile">
-                        <a>Profile</a>
-                    </Link>
                     <Link href="/about">
                         <a>About</a>
+                    </Link>
+                    <Link href="/profile">
+                        <a>Profile</a>
                     </Link>
                 </div>
                 <style jsx>{`
@@ -26,7 +26,6 @@ class Header extends React.Component {
                         display: flex;
                         align-items: center;
                         margin-bottom: 30px;
-                        /*scrolled + opacity*/
                         background-color: white;
                         opacity: 0.9;
                         box-shadow: 0 2px 4px rgba(0,0,0,0.12);

@@ -32,18 +32,38 @@ class Category extends React.Component {
                     .container-category {
                         margin: 10px 40px 10px 10%;
                         padding: 10px;
-                        width: 300px;
-                        border: 1px solid black;
                     }
 
                     .category-order {
-                        display: flex;
-                        flex-wrap: wrap;
-                        align-items: center;
+                        padding: 10px;
+                        width: 170px;
+                    }
+
+                    select {
+                        position: relative;
+                        display: block;
+                        margin: 0 auto;
+                        width: 100%;
+                        max-width: 150px;
+                        color: #595959;
+                        vertical-align: middle;
+                        text-align: left;
+                        user-select: none;
+                        -webkit-touch-callout: none;
+                        background-color: #e6e6e6;
+                        z-index: 1;
+                        border-radius: 2px;
+                        cursor: pointer;
+                        padding: 3px;
+                    }
+
+                    select:hover {
+                        background-color: #cccccc;
                     }
 
                     .category-list {
                         padding: 10px;
+                        width: 170px;
                     }
 
                     button {
@@ -59,7 +79,7 @@ class Category extends React.Component {
 
                     @media screen and (max-width: 992px) {
                         .container-category {
-                            margin: 40px 40px 10px 40px;
+                            margin: 40px 20px 10px 40px;
                         }
                     }
 
