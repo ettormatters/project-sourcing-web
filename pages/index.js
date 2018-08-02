@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import StageBanner from '../components/StageBanner'
 import Category from '../components/Category'
 import PostView from '../components/PostView'
-const fakeData = require('../assets/fakeData.js');
+import fakeData from '../assets/fakeData.js';
 
 class Index extends React.Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class Index extends React.Component {
         };
 
         this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
-        this._orderButtonOnPress = this._orderButtonOnPress.bind(this);
+        this._orderSelectOnChange = this._orderSelectOnChange.bind(this);
       }
 
     componentWillMount(){
@@ -58,6 +58,7 @@ class Index extends React.Component {
 
     componentDidMount(){
         console.log(">2componentDidMount");
+        //network req
     }
 
     shouldComponentUpdate(){
@@ -71,24 +72,25 @@ class Index extends React.Component {
 
     componentDidUpdate(){
         console.log(">03componentDidUpdate");
+        //비교 condition
+        //network req
     }
 
-    _orderButtonOnPress (event) {
-        console.log(event.target);
+    _orderSelectOnChange (event) {
+        console.log(event.target.value);
     }
     
     _checkBoxOnChange (event) {
-        console.log(this.state.posts.default)
         const checked = event.target.checked;
         const id = event.target.id;
         if(checked==true){
-            this.setState(()=>{
-                this.state.list[id].checked = true;
+            this.setState((prevState, props)=>{
+                prevState.list[id].checked = true;
                 return true;
             });
         } else {
-            this.setState(()=>{
-                this.state.list[id].checked = false;
+            this.setState((prevState, props)=>{
+                prevState.list[id].checked = false;
                 return true;
             });
         }
@@ -99,8 +101,8 @@ class Index extends React.Component {
             <Layout>
                 <StageBanner />
                 <div className="container">
-                    <Category order={this.state.order} list={this.state.list} onChange={this._checkBoxOnChange} onClick={this._orderButtonOnPress}/>
-                    <PostView posts={this.state.posts.default} />
+                    <Category order={this.state.order} list={this.state.list} boxChange={this._checkBoxOnChange} selChange={this._orderSelectOnChange}/>
+                    <PostView posts={this.state.posts} />
                 </div>
             </Layout>
         );
