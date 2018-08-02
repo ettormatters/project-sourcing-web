@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/oeritas/partyPeople#readme",
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphiql": "^0.11.11",
     "graphql": "^0.13.2",
+    "mongoose": "^5.2.6",
     "next": "^6.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
