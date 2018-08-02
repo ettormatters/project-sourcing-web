@@ -14,12 +14,6 @@ class Layout extends React.Component {
                     div {
                         margin-top: 30px;
                     }
-                    
-                    .container {
-                        display: flex;
-                        flex-wrap: wrap;
-                        align-items: center;
-                    }            
                 `}</style>
             </div>
         );
