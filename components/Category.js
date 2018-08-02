@@ -1,5 +1,4 @@
 import React from 'react'
-import OrderButton from '../components/OrderButton'
 import CheckBox from '../components/CheckBox'
 
 class Category extends React.Component {
@@ -9,11 +8,14 @@ class Category extends React.Component {
                 <div>
                     <fieldset className="category-order">
                         <legend>Order</legend>
-                        {this.props.order.map((orderItem, i) => {
-                            return (
-                                <OrderButton key={i} id={orderItem.id} text={orderItem.text} onClick={this.props.onClick} />
-                            )
-                        })}
+                        <div className="category-order-item">
+                            <select name="category-order-item" onChange={this.props.selChange}>
+                                <option value={this.props.order[0].id}>{this.props.order[0].text}</option>
+                                <option value={this.props.order[1].id}>{this.props.order[1].text}</option>
+                                <option value={this.props.order[2].id}>{this.props.order[2].text}</option>
+                                <option value={this.props.order[3].id}>{this.props.order[3].text}</option>
+                            </select>
+                        </div>
                     </fieldset>
                 </div>
                 <div>
@@ -21,7 +23,7 @@ class Category extends React.Component {
                         <legend>List</legend>
                         {this.props.list.map((listItem, i) => {
                             return (
-                                <CheckBox key={i} id={listItem.id} text={listItem.text} onChange={this.props.onChange} />
+                                <CheckBox key={i} id={listItem.id} text={listItem.text} boxChange={this.props.boxChange} />
                             )
                         })}
                     </fieldset>
@@ -42,6 +44,17 @@ class Category extends React.Component {
 
                     .category-list {
                         padding: 10px;
+                    }
+
+                    button {
+                        border: none;
+                        background-color: #555555;
+                        color: white;
+                        padding: 5px;
+                        text-align: center;
+                        text-decoration: none;
+                        font-size: 5px;
+                        margin: 5px 0;
                     }
 
                     @media screen and (max-width: 992px) {
