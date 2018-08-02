@@ -108,12 +108,13 @@ class Index extends React.Component {
                     body {
                         margin: 0;
                     }
-
+                `}</style>
+                <style jsx>{`
                     .container {
                         display: flex;
-                        align-items: center;
-                    }  
-                `}</style>
+                        align-items: flex-start;
+                    }
+                `} </style>
             </Layout>
         );
     }
