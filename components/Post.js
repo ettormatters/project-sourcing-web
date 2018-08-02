@@ -13,7 +13,6 @@ class Post extends React.Component {
                        margin: 10px;
                        padding: 5px;
                        min-width: 350px; /*screen size*/
-                       max-width: 749px; /*안늘어남*/
                    }
                    /*viewport, Responsive*/
                 `}</style>

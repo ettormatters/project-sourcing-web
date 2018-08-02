@@ -102,6 +102,16 @@ class Index extends React.Component {
                     <Category order={this.state.order} list={this.state.list} onChange={this._checkBoxOnChange} onClick={this._orderButtonOnPress}/>
                     <PostView posts={this.state.posts.default} />
                 </div>
+                <style jsx global>{`
+                    body {
+                        margin: 0;
+                    }
+
+                    .container {
+                        display: flex;
+                        align-items: center;
+                    }  
+                `}</style>
             </Layout>
         );
     }

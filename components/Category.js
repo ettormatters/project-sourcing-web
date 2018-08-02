@@ -28,9 +28,9 @@ class Category extends React.Component {
                 </div>
                 <style jsx>{`
                     .container-category {
-                        margin: 10px 10px 10px 10%;
+                        margin: 10px 40px 10px 10%;
                         padding: 10px;
-                        width: 200px;
+                        width: 300px;
                         border: 1px solid black;
                     }
 
