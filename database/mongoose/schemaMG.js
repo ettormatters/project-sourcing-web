@@ -11,10 +11,10 @@ const postSchema = new mongoose.Schema({
         oneLine: String,
         desc: String,
         hashTag: String,
-        memberNumebr: Number
+        memberNumber: Number
     },
     clap: Number,
-    date: String
+    date: Date
 })
 
 const Post = mongoose.model('Post', postSchema);

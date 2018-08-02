@@ -35,13 +35,13 @@ const schemaQL = buildSchema(`
     }
 
     type Query {
-        hello: String
-        getPost(title: String): Post
+        getInitialPosts: [Post]
+        searchByHead(head: String!): [Post]
     }
 
     type Mutation {
         createPost(input: PostInput): Post
-        updatePost(id: ID!, input: PostInput): Post
+        updatePost(input: PostInput): Post
     }
 `)
 

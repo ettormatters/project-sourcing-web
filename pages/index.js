@@ -1,9 +1,9 @@
 import React from 'react';
+import { request } from 'graphql-request'
 import Layout from '../components/Layout'
 import StageBanner from '../components/StageBanner'
 import Category from '../components/Category'
 import PostView from '../components/PostView'
-import fakeData from '../assets/fakeData.js';
 
 class Index extends React.Component {
     constructor(props) {
@@ -29,8 +29,7 @@ class Index extends React.Component {
                 { id: "10", val: "travel", text: "Travel", checked:false },
                 { id: "11", val: "game", text: "Game", checked:false },
                 { id: "12", val: "activity", text: "Activity", checked:false }
-            ],
-            posts : fakeData
+            ]
         };
 
         this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
@@ -39,26 +38,10 @@ class Index extends React.Component {
 
     componentWillMount(){
         console.log(">1componentWillMount");
-        async function dataCall (){
-            try {
-                /*console.log("here");
-                await fetch("")
-                    .then(res => res.json())
-                    .then(data => console.log(data))*/
-                //const data = Users.findOne({}).exec();
-                //user.name = 'zero';
-                //user = await user.save();
-                //user = await Users.findOne({ gender: 'm' }).exec();
-            } catch (err) {
-                console.error(err);
-            }
-        }
-        dataCall();
     }
 
     componentDidMount(){
         console.log(">2componentDidMount");
-        //network req
     }
 
     shouldComponentUpdate(){
@@ -102,7 +85,7 @@ class Index extends React.Component {
                 <StageBanner />
                 <div className="container">
                     <Category order={this.state.order} list={this.state.list} boxChange={this._checkBoxOnChange} selChange={this._orderSelectOnChange}/>
-                    <PostView posts={this.state.posts} />
+                    <PostView posts={this.props.init} />
                 </div>
                 <style jsx global>{`
                     body {
@@ -117,6 +100,33 @@ class Index extends React.Component {
                 `} </style>
             </Layout>
         );
+    }
+}
+
+Index.getInitialProps = async function() {
+    const query = `
+        query {
+            getInitialPosts{
+            partyHead
+            author
+            title
+            data{
+                category
+                oneLine
+                desc
+                hashTag
+                memberNumber
+            }
+            clap
+            date
+            }
+        }
+    `
+    const res = await request('http://localhost:4000/graphql', query)
+    console.log(`init ok.`);
+
+    return {
+        init: res.getInitialPosts
     }
 }
 

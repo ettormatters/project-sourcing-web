@@ -7,7 +7,7 @@ class PostView extends React.Component {
             <div className="post-view">
                 {this.props.posts.map((post, i) => {
                     return (
-                        <Post key={i} data={JSON.stringify(post,null,2)}/>
+                        <Post key={i} data={JSON.stringify(post,undefined,4)}/>
                     )
                 })}
                 <style jsx>{`
@@ -43,7 +43,3 @@ class PostView extends React.Component {
 }
 
 export default PostView
-
-/*
-
-                */
