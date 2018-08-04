@@ -38,6 +38,10 @@ class Category extends React.Component {
                         padding: 10px;
                         width: 170px;
                     }
+                    
+                    legend {
+                        color: #707070;
+                    }
 
                     select {
                         position: relative;
@@ -45,12 +49,12 @@ class Category extends React.Component {
                         margin: 0 auto;
                         width: 100%;
                         max-width: 150px;
-                        color: #595959;
+                        color: #black;
                         vertical-align: middle;
                         text-align: left;
                         user-select: none;
                         -webkit-touch-callout: none;
-                        background-color: #e6e6e6;
+                        background-color: #707070;
                         z-index: 1;
                         border-radius: 2px;
                         cursor: pointer;
