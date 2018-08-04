@@ -5,10 +5,10 @@ class Header extends React.Component {
     render(){
         return(
             <div className="header">
-                <div className="logo">
+                <span className="logo">
                     PARTY.com
-                </div>
-                <div className="navigation">
+                </span>
+                <span className="navigation">
                     <Link href="/">
                         <a>Stage</a>
                     </Link>
@@ -18,7 +18,7 @@ class Header extends React.Component {
                     <Link href="/profile">
                         <a>Profile</a>
                     </Link>
-                </div>
+                </span>
                 <style jsx>{`
                     .header {
                         z-index: 1000;

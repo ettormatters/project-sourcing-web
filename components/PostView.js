@@ -7,7 +7,19 @@ class PostView extends React.Component {
             <div className="post-view">
                 {this.props.posts.map((post, i) => {
                     return (
-                        <Post key={i} data={JSON.stringify(post,undefined,4)}/>
+                        <Post 
+                            key={i} 
+                            title={post.title} 
+                            partyHead={post.partyHead} 
+                            author={post.author} 
+                            date={post.date} 
+                            category={post.data.category}
+                            oneLine={post.data.oneLine}
+                            desc={post.data.desc}
+                            hashTag={post.data.hashTag}
+                            memberNumber={post.data.memberNumber}
+                            clap={post.clap}
+                        />
                     )
                 })}
                 <style jsx>{`
@@ -43,3 +55,6 @@ class PostView extends React.Component {
 }
 
 export default PostView
+
+//JSON.stringify(post,undefined,4)
+//

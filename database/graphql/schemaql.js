@@ -36,6 +36,7 @@ const schemaQL = buildSchema(`
 
     type Query {
         getInitialPosts: [Post]
+        getUpdatePosts: [Post]
         searchByHead(head: String!): [Post]
     }
 

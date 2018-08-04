@@ -8,6 +8,7 @@ import PostView from '../components/PostView'
 class Index extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             order : [
                 { id: "recent", text: "Recently" },
@@ -29,11 +30,14 @@ class Index extends React.Component {
                 { id: "10", val: "travel", text: "Travel", checked:false },
                 { id: "11", val: "game", text: "Game", checked:false },
                 { id: "12", val: "activity", text: "Activity", checked:false }
-            ]
+            ],
+            posts : this.props.init,
+            checkArray : [0,0,0,0,0,0,0,0,0,0,0,0,0]
         };
 
-        this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
         this._orderSelectOnChange = this._orderSelectOnChange.bind(this);
+        this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
+        this._updateByList = this._updateByList.bind(this); 
       }
 
     componentWillMount(){
@@ -55,8 +59,6 @@ class Index extends React.Component {
 
     componentDidUpdate(){
         console.log(">03componentDidUpdate");
-        //비교 condition
-        //network req
     }
 
     _orderSelectOnChange (event) {
@@ -64,20 +66,72 @@ class Index extends React.Component {
     }
     
     _checkBoxOnChange (event) {
-        const checked = event.target.checked;
+        const boxChecked = event.target.checked;
         const id = event.target.id;
-        if(checked==true){
-            this.setState((prevState, props)=>{
+        if(boxChecked==true) {
+            this.setState((prevState, props) => {
                 prevState.list[id].checked = true;
+                for(let id in this.state.list) {
+                    if(this.state.list[id].checked == true) {
+                        console.log("im in");
+                        prevState.checkArray[id] = 1;
+                        console.log(this.state.checkArray);
+                        console.log(this.state.list)
+                    }
+                }
+                //this._updateByList(this.state.checkArray);
                 return true;
             });
         } else {
-            this.setState((prevState, props)=>{
+            this.setState((prevState, props) => {
                 prevState.list[id].checked = false;
+                for(let id in this.state.list) {
+                   if(this.state.list[id].checked == false) {
+                       console.log("im out");
+                       prevState.checkArray[id] = 0;
+                   }
+                }
+                console.log(this.state.checkArray);
+                console.log(this.state.list);
                 return true;
-            });
+           });
         }
     }
+
+    async _updateByList (checkArray) {
+        //let updateArray = [];
+        for(let i in checkArray) {
+            if(checkArray[i]==1) {
+                
+            }
+        }
+
+        const updateQuery = `
+            query {
+                getInitialPosts {
+                    partyHead
+                    author
+                    title
+                    data{
+                        category
+                        oneLine
+                        desc
+                        hashTag
+                        memberNumber
+                    }
+                    clap
+                    date
+                }
+            }
+        `
+        const upRes = await request('http://localhost:4000/graphql', updateQuery)
+        console.log(`init ok.`);
+
+        return {
+            init: upRes.getInitialPosts
+        }
+    }
+
 
     render(){
         return(
@@ -85,7 +139,7 @@ class Index extends React.Component {
                 <StageBanner />
                 <div className="container">
                     <Category order={this.state.order} list={this.state.list} boxChange={this._checkBoxOnChange} selChange={this._orderSelectOnChange}/>
-                    <PostView posts={this.props.init} />
+                    <PostView posts={this.state.posts} />
                 </div>
                 <style jsx global>{`
                     body {
@@ -104,25 +158,25 @@ class Index extends React.Component {
 }
 
 Index.getInitialProps = async function() {
-    const query = `
+    const initQuery = `
         query {
-            getInitialPosts{
-            partyHead
-            author
-            title
-            data{
-                category
-                oneLine
-                desc
-                hashTag
-                memberNumber
-            }
-            clap
-            date
+            getInitialPosts {
+                partyHead
+                author
+                title
+                data{
+                    category
+                    oneLine
+                    desc
+                    hashTag
+                    memberNumber
+                }
+                clap
+                date
             }
         }
     `
-    const res = await request('http://localhost:4000/graphql', query)
+    const res = await request('http://localhost:4000/graphql', initQuery)
     console.log(`init ok.`);
 
     return {

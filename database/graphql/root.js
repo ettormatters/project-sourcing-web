@@ -6,8 +6,14 @@ const root = {
     return recentAll;
   },
 
+  getUpdatePosts: async () => {
+    let query = ``;
+    let dataByList = await Post.find();
+  },
+
   searchByHead: async ({head}) => {
-    let byHeadResult = await Post.find({"partyHead":`${head}`});
+    let query = `"partyHead":"${head}"`;
+    let byHeadResult = await Post.find({query});
     return byHeadResult;
   },
 
