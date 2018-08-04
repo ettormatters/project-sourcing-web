@@ -16,6 +16,10 @@ const schemaQL = buildSchema(`
         memberNumber: Int
     }
 
+    input cateCheck {
+        category: [String]
+    }
+
     type Data {
         category: String
         oneLine: String
@@ -36,7 +40,7 @@ const schemaQL = buildSchema(`
 
     type Query {
         getInitialPosts: [Post]
-        getUpdatePosts: [Post]
+        getUpdatePosts(cateCheck: cateCheck!): [Post]
         searchByHead(head: String!): [Post]
     }
 

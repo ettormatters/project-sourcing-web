@@ -59,6 +59,7 @@ class Index extends React.Component {
 
     componentDidUpdate(){
         console.log(">03componentDidUpdate");
+        console.log(`1 : ${this.state.posts}`)
     }
 
     _orderSelectOnChange (event) {
@@ -69,46 +70,48 @@ class Index extends React.Component {
         const boxChecked = event.target.checked;
         const id = event.target.id;
         if(boxChecked==true) {
-            this.setState((prevState, props) => {
+            this.setState( async (prevState, props) => {
                 prevState.list[id].checked = true;
                 for(let id in this.state.list) {
                     if(this.state.list[id].checked == true) {
-                        console.log("im in");
                         prevState.checkArray[id] = 1;
-                        console.log(this.state.checkArray);
-                        console.log(this.state.list)
                     }
                 }
-                //this._updateByList(this.state.checkArray);
+                console.log(this.state.list);
+                this.state.posts =  await this._updateByList(prevState.checkArray);
+                console.log(this.state.posts)
                 return true;
+                //async prob.
             });
         } else {
             this.setState((prevState, props) => {
                 prevState.list[id].checked = false;
                 for(let id in this.state.list) {
                    if(this.state.list[id].checked == false) {
-                       console.log("im out");
                        prevState.checkArray[id] = 0;
                    }
                 }
-                console.log(this.state.checkArray);
-                console.log(this.state.list);
                 return true;
            });
         }
     }
 
     async _updateByList (checkArray) {
-        //let updateArray = [];
+        let updateArray = [];
         for(let i in checkArray) {
             if(checkArray[i]==1) {
-                
+                updateArray.push(this.state.list[i].val);
             }
         }
-
+        let arrStr = `${updateArray}`;
+        const variables = {
+            arrStr: updateArray,
+        }
         const updateQuery = `
-            query {
-                getInitialPosts {
+            query UpdatePosts($arrStr: [String]) {
+                getUpdatePosts(cateCheck:{
+                    category: $arrStr
+                }) {
                     partyHead
                     author
                     title
@@ -122,16 +125,11 @@ class Index extends React.Component {
                     clap
                     date
                 }
-            }
-        `
-        const upRes = await request('http://localhost:4000/graphql', updateQuery)
-        console.log(`init ok.`);
-
-        return {
-            init: upRes.getInitialPosts
         }
+        `
+        const upRes = await request('http://localhost:4000/graphql', updateQuery, variables)
+        return upRes.getUpdatePosts;
     }
-
 
     render(){
         return(
