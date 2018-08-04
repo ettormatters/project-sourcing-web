@@ -1,13 +1,14 @@
 import React from 'react';
+import { request } from 'graphql-request'
 import Layout from '../components/Layout'
 import StageBanner from '../components/StageBanner'
 import Category from '../components/Category'
 import PostView from '../components/PostView'
-import fakeData from '../assets/fakeData.js';
 
 class Index extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             order : [
                 { id: "recent", text: "Recently" },
@@ -30,35 +31,21 @@ class Index extends React.Component {
                 { id: "11", val: "game", text: "Game", checked:false },
                 { id: "12", val: "activity", text: "Activity", checked:false }
             ],
-            posts : fakeData
+            posts : this.props.init,
+            checkArray : [0,0,0,0,0,0,0,0,0,0,0,0,0]
         };
 
-        this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
         this._orderSelectOnChange = this._orderSelectOnChange.bind(this);
+        this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
+        this._updateByList = this._updateByList.bind(this); 
       }
 
     componentWillMount(){
         console.log(">1componentWillMount");
-        async function dataCall (){
-            try {
-                /*console.log("here");
-                await fetch("")
-                    .then(res => res.json())
-                    .then(data => console.log(data))*/
-                //const data = Users.findOne({}).exec();
-                //user.name = 'zero';
-                //user = await user.save();
-                //user = await Users.findOne({ gender: 'm' }).exec();
-            } catch (err) {
-                console.error(err);
-            }
-        }
-        dataCall();
     }
 
     componentDidMount(){
         console.log(">2componentDidMount");
-        //network req
     }
 
     shouldComponentUpdate(){
@@ -72,8 +59,6 @@ class Index extends React.Component {
 
     componentDidUpdate(){
         console.log(">03componentDidUpdate");
-        //비교 condition
-        //network req
     }
 
     _orderSelectOnChange (event) {
@@ -81,20 +66,72 @@ class Index extends React.Component {
     }
     
     _checkBoxOnChange (event) {
-        const checked = event.target.checked;
+        const boxChecked = event.target.checked;
         const id = event.target.id;
-        if(checked==true){
-            this.setState((prevState, props)=>{
+        if(boxChecked==true) {
+            this.setState((prevState, props) => {
                 prevState.list[id].checked = true;
+                for(let id in this.state.list) {
+                    if(this.state.list[id].checked == true) {
+                        console.log("im in");
+                        prevState.checkArray[id] = 1;
+                        console.log(this.state.checkArray);
+                        console.log(this.state.list)
+                    }
+                }
+                //this._updateByList(this.state.checkArray);
                 return true;
             });
         } else {
-            this.setState((prevState, props)=>{
+            this.setState((prevState, props) => {
                 prevState.list[id].checked = false;
+                for(let id in this.state.list) {
+                   if(this.state.list[id].checked == false) {
+                       console.log("im out");
+                       prevState.checkArray[id] = 0;
+                   }
+                }
+                console.log(this.state.checkArray);
+                console.log(this.state.list);
                 return true;
-            });
+           });
         }
     }
+
+    async _updateByList (checkArray) {
+        //let updateArray = [];
+        for(let i in checkArray) {
+            if(checkArray[i]==1) {
+                
+            }
+        }
+
+        const updateQuery = `
+            query {
+                getInitialPosts {
+                    partyHead
+                    author
+                    title
+                    data{
+                        category
+                        oneLine
+                        desc
+                        hashTag
+                        memberNumber
+                    }
+                    clap
+                    date
+                }
+            }
+        `
+        const upRes = await request('http://localhost:4000/graphql', updateQuery)
+        console.log(`init ok.`);
+
+        return {
+            init: upRes.getInitialPosts
+        }
+    }
+
 
     render(){
         return(
@@ -117,6 +154,33 @@ class Index extends React.Component {
                 `} </style>
             </Layout>
         );
+    }
+}
+
+Index.getInitialProps = async function() {
+    const initQuery = `
+        query {
+            getInitialPosts {
+                partyHead
+                author
+                title
+                data{
+                    category
+                    oneLine
+                    desc
+                    hashTag
+                    memberNumber
+                }
+                clap
+                date
+            }
+        }
+    `
+    const res = await request('http://localhost:4000/graphql', initQuery)
+    console.log(`init ok.`);
+
+    return {
+        init: res.getInitialPosts
     }
 }
 
