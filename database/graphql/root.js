@@ -12,6 +12,7 @@ const root = {
     let query = {
       "data.category": {$in: arr }
     }
+
     let dataByList = await Post.find(query).sort({date: -1});
 
     return dataByList;
@@ -21,6 +22,7 @@ const root = {
     let query = {
       "partyHead" : head
     }
+
     let byHeadResult = await Post.find(query);
 
     return byHeadResult;
@@ -52,7 +54,7 @@ const root = {
             return err;
           }
         });
-        
+
       return newPost;
   },
 
@@ -60,6 +62,18 @@ const root = {
     
     return true;
   },
+
+  updateClap: async ({titleInput}) => {
+    let query = {
+      "title": titleInput.title
+    }
+
+    let clapUpdatedPost = await Post.findOne(query);
+
+    //update clap 
+
+    return clapUpdatedPost;
+  }
 };
 
 module.exports = root;

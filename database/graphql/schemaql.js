@@ -5,10 +5,10 @@ const schemaQL = buildSchema(`
         partyHead: String!
         author: String
         title: String!
-        data: inputData!
+        data: dataInput!
     }
 
-    input inputData {
+    input dataInput {
         category: String
         oneLine: String
         desc: String
@@ -18,6 +18,10 @@ const schemaQL = buildSchema(`
 
     input cateCheck {
         category: [String]
+    }
+
+    input Title {
+        title: String!
     }
 
     type Data {
@@ -47,6 +51,7 @@ const schemaQL = buildSchema(`
     type Mutation {
         createPost(input: PostInput): Post
         updatePost(input: PostInput): Post
+        updateClap(titleInput: Title): Post
     }
 `)
 

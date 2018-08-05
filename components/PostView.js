@@ -19,6 +19,7 @@ class PostView extends React.Component {
                             hashTag={post.data.hashTag}
                             memberNumber={post.data.memberNumber}
                             clap={post.clap}
+                            clapChange={this.props.clapChange}
                         />
                     )
                 })}

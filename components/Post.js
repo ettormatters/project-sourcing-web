@@ -25,7 +25,7 @@ class Post extends React.Component {
                     <div className="post-footer">
                         <span>Category | <span>{this.props.category}</span></span>
                         <span>Wanted | <span>{this.props.memberNumber}</span></span>
-                        <span>Clapped | <span>{this.props.clap}</span></span>
+                        <span><button onClick={this.props.clapChange}>Clap</button> | <span>{this.props.clap}</span></span>
                     </div>
                 <style jsx>{`
                    .post {
@@ -61,3 +61,5 @@ class Post extends React.Component {
 }
 
 export default Post
+
+//onClick 함수 하나더 달아서, 이 파일에 함수박고, dom 으로 조작(바닐라관점)(안되면?)

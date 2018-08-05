@@ -37,7 +37,8 @@ class Index extends React.Component {
 
         this._orderSelectOnChange = this._orderSelectOnChange.bind(this);
         this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
-        this._updateByList = this._updateByList.bind(this); 
+        this._updateByList = this._updateByList.bind(this);
+        this._clapOnChange = this._clapOnChange.bind(this); 
       }
 
     componentWillMount(){
@@ -136,15 +137,15 @@ class Index extends React.Component {
             }
         }
 
-        const variables = {
+        let variables = {
             arrStr: updateArray,
         }
 
         const updateQuery = `
             query UpdatePosts($arrStr: [String]) {
-                getUpdatePosts(cateCheck:{
-                    category: $arrStr
-                }) {
+                getUpdatePosts(cateCheck:
+                    {category: $arrStr}
+                ){
                     partyHead
                     author
                     title
@@ -164,14 +165,55 @@ class Index extends React.Component {
         return upRes.getUpdatePosts;
     }
 
+    async _clapOnChange (event) {
+        //event title
+
+        let variables = {
+            titleStr: "",
+        }
+
+        const clapQuery = `
+            mutation UpdateClap($titleStr: String!){
+                updateClap (titleInput:
+                    {title: $titleStr}
+                ){
+                    partyHead
+                    author
+                    title
+                    data{
+                        category
+                        oneLine
+                        desc
+                        hashTag
+                        memberNumber
+                    }
+                    clap
+                    date
+                }
+            }
+            }
+        `
+        await request('http://localhost:4000/graphql', clapQuery, variables);
+        return true;
+    }
+
     render(){
         return(
             <Layout>
                 <StageBanner />
                 <div className="container">
-                    <Category order={this.state.order} list={this.state.list} boxChange={this._checkBoxOnChange} selChange={this._orderSelectOnChange}/>
-                    <PostView posts={this.state.posts} />
+                    <Category 
+                        order={this.state.order} 
+                        list={this.state.list} 
+                        boxChange={this._checkBoxOnChange} 
+                        selChange={this._orderSelectOnChange}
+                    />
+                    <PostView 
+                        posts={this.state.posts} 
+                        clapChange={this._clapOnChange} 
+                    />
                 </div>
+
                 <style jsx global>{`
                     body {
                         margin: 0;
@@ -190,7 +232,7 @@ class Index extends React.Component {
 }
 
 Index.getInitialProps = async function() {
-    const initQuery = `
+    let initQuery = `
         query {
             getInitialPosts {
                 partyHead
