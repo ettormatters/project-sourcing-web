@@ -59,7 +59,6 @@ class Index extends React.Component {
 
     componentDidUpdate(){
         console.log(">03componentDidUpdate");
-        console.log(`1 : ${this.state.posts}`)
     }
 
     _orderSelectOnChange (event) {
@@ -77,9 +76,9 @@ class Index extends React.Component {
         if(boxChecked==true) {
             _list[id].checked = true;
 
-            for(let id in _list) {
-                if(_list[id].checked == true) {
-                    _array[id] = 1;
+            for(let d in _list) {
+                if(_list[d].checked == true) {
+                    _array[d] = 1;
                 }
             }
 
@@ -94,9 +93,9 @@ class Index extends React.Component {
         } else {
             _list[id].checked = false;
 
-            for(let id in _list) {
-                if(_list[id].checked == false) {
-                    _array[id] = 0;
+            for(let d in _list) {
+                if(_list[d].checked == false) {
+                    _array[d] = 0;
                 }
             }
 
@@ -107,13 +106,17 @@ class Index extends React.Component {
                 }
             }
 
-            if(cnt == 13){
+            if(cnt == 13) {
                 for(let i in _array) {
                     _array[i] = 1;
                 }
+                _posts = await this._updateByList(_array);
+                for(let i in _array) {
+                    _array[i] = 0;
+                }
+            } else {
+                _posts = await this._updateByList(_array);
             }
-
-            _posts = await this._updateByList(_array);
 
             this.setState((prevState, props) => {
                 prevState.list = _list;
