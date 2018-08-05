@@ -3,7 +3,8 @@ const next = require('next');
 const mongoose =require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schemaQL = require('./database/graphql/schemaQL');
-const root = require('./database/graphql/root')
+const root = require('./database/graphql/root');
+const cors = require('cors');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -25,7 +26,7 @@ app.prepare()
     return handle(req, res)
   })
 
-  serverQL.use('/graphql', graphqlHTTP({
+  serverQL.use('/graphql', cors(), graphqlHTTP({
     schema: schemaQL,
     rootValue: root,
     graphiql: true,

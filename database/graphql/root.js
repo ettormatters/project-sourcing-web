@@ -6,21 +6,24 @@ const root = {
     return recentAll;
   },
 
-  getUpdatePosts: async () => {
-    let query = ``;
-    let dataByList = await Post.find();
+  getUpdatePosts: async ({cateCheck}) => {
+    let arr = cateCheck.category;
+    let query = {
+      "data.category": {$in: arr }
+    }
+    let dataByList = await Post.find(query).sort({date: -1});
+    return dataByList;
   },
 
   searchByHead: async ({head}) => {
-    let query = `"partyHead":"${head}"`;
-    let byHeadResult = await Post.find({query});
+    let query = {
+      "partyHead" : head
+    }
+    let byHeadResult = await Post.find(query);
     return byHeadResult;
   },
 
   createPost: ({input}) => {
-    if(Post.find({"title":`${input.title}`})){
-      return null;
-    } else {
       let newPost;
       newPost = new Post();
       let id = require('crypto').randomBytes(10).toString('hex');
@@ -43,7 +46,6 @@ const root = {
           }
         });
       return newPost;
-    }
   },
 
   updatePost: ({input}) => {
@@ -54,3 +56,11 @@ const root = {
 
 module.exports = root;
 
+
+/*
+if(Post.find({"title":`${input.title}`})){
+  return null;
+} else {}
+*/
+
+//db.posts.find( { "data.category": { $in: ["business","side-project" ] } } ).pretty()
