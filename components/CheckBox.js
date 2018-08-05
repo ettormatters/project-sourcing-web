@@ -9,13 +9,12 @@ class CheckBox extends React.Component {
                 <style jsx>{`
                     .category-list-item {
                         border-radius: 5px;
+                        color: #707070;
                     }
                     
                     .category-list-item:hover {
+                        color: black;
                         background-color: #e6e6e6;
-                    }
-
-                    input {
                     }
                 `}</style>
             </div>

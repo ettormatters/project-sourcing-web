@@ -11,13 +11,13 @@ class Footer extends React.Component {
                 <style jsx>{`
                     .footer {
                         margin-top: 30px;
-                        border-top: 1px solid #e6e6e6;
+                        border-top: 1px solid #262626;
                         padding: 10px 10% 40px 10%;
-                        background-color: #f2f2f2;
+                        background-color: hsl(0, 0%, 8.5%);;
                     }
 
                     .footer-item {
-                        color: #b3b3b3;
+                        color: #383838;
                     }
 
                     @media screen and (max-width: 992px) {
