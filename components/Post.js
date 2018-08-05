@@ -4,27 +4,28 @@ class Post extends React.Component {
     render(){
         return(
             <div className="post">
-                    <div className="post-title">
-                        <span>{this.props.title}</span>
+                    <div className="post-header">
+                        <span className="profile-image"><img src="#" alt="Icon"/></span>
+                        <span className="title">{this.props.title}</span>
+                        <span><span>{this.props.partyHead}</span> ∙ <span>{this.props.author}</span> | <span>{this.props.date}</span> ~ <span>Due Day</span></span>
                     </div>
-                    <div className="post-sum">
-                        <span>Party Head <span>{this.props.partyHead}</span></span>
-                        <span>Author <span>{this.props.author}</span></span>
-                        <span>{this.props.date}</span>
+                    <div className="post-popup">
+                        <span className="talk-balloon"><img src="#" alt="balloon"/></span>
+                        <span className="headTag">head hashTag</span>
                     </div>
                     <div className="post-content">
-                        <span>Category <span>{this.props.category}</span></span>
-                        <span>#<span>{this.props.hashTag}</span></span>
-                        <span>모집멤버수 <span>{this.props.memberNumber}</span></span>
                         <div className="post-content-oneLine">
-                            {this.props.oneLine}
+                            <span>"<span>{this.props.oneLine}</span>"</span>
                         </div>
                         <div className="post-content-desc">
                             {this.props.desc}
                         </div>
+                        <span>#<span>{this.props.hashTag}</span></span>
                     </div>
                     <div className="post-footer">
-                        <span>{this.props.clap}</span>
+                        <span>Category | <span>{this.props.category}</span></span>
+                        <span>Wanted | <span>{this.props.memberNumber}</span></span>
+                        <span>Clapped | <span>{this.props.clap}</span></span>
                     </div>
                 <style jsx>{`
                    .post {
