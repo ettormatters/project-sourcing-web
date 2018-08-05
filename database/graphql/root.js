@@ -3,6 +3,7 @@ const Post = require('../mongoose/schemaMG');
 const root = {
   getInitialPosts: async () => {
     let recentAll = await Post.find().sort({date: -1});
+
     return recentAll;
   },
 
@@ -12,6 +13,7 @@ const root = {
       "data.category": {$in: arr }
     }
     let dataByList = await Post.find(query).sort({date: -1});
+
     return dataByList;
   },
 
@@ -20,18 +22,22 @@ const root = {
       "partyHead" : head
     }
     let byHeadResult = await Post.find(query);
+
     return byHeadResult;
   },
 
   createPost: ({input}) => {
       let newPost;
       newPost = new Post();
+
       let id = require('crypto').randomBytes(10).toString('hex');
       newPost.id = id;
       newPost.partyHead = input.partyHead;
+
       if(input.author){
         newPost.author = input.author;
       }
+
       newPost.title = input.title;
       newPost.data.category = input.data.category;
       newPost.data.oneLine = input.data.oneLine;
@@ -39,12 +45,14 @@ const root = {
       newPost.data.hashTag = input.data.hashTag;
       newPost.data.memberNumber = input.data.memberNumber;
       newPost.date = new Date();
+
       newPost.save(function(err){
           if(err){
             console.error(err);
             return err;
           }
         });
+        
       return newPost;
   },
 

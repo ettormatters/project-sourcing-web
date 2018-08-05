@@ -66,31 +66,59 @@ class Index extends React.Component {
         console.log(event.target.value);
     }
     
-    _checkBoxOnChange (event) {
+    async _checkBoxOnChange (event) {
         const boxChecked = event.target.checked;
         const id = event.target.id;
+
+        let _list = this.state.list;
+        let _array = this.state.checkArray;
+        let _posts = this.state.posts;
+
         if(boxChecked==true) {
-            this.setState( async (prevState, props) => {
-                prevState.list[id].checked = true;
-                for(let id in this.state.list) {
-                    if(this.state.list[id].checked == true) {
-                        prevState.checkArray[id] = 1;
-                    }
+            _list[id].checked = true;
+
+            for(let id in _list) {
+                if(_list[id].checked == true) {
+                    _array[id] = 1;
                 }
-                console.log(this.state.list);
-                this.state.posts =  await this._updateByList(prevState.checkArray);
-                console.log(this.state.posts)
+            }
+
+            _posts = await this._updateByList(_array);
+
+            this.setState((prevState, props) => {
+                prevState.list = _list;
+                prevState.checkArray = _array;
+                prevState.posts = _posts;
                 return true;
-                //async prob.
             });
         } else {
-            this.setState((prevState, props) => {
-                prevState.list[id].checked = false;
-                for(let id in this.state.list) {
-                   if(this.state.list[id].checked == false) {
-                       prevState.checkArray[id] = 0;
-                   }
+            _list[id].checked = false;
+
+            for(let id in _list) {
+                if(_list[id].checked == false) {
+                    _array[id] = 0;
                 }
+            }
+
+            let cnt = 0;
+            for(let i in _array) {
+                if(_array[i] == 0){
+                    cnt = cnt + 1;
+                }
+            }
+
+            if(cnt == 13){
+                for(let i in _array) {
+                    _array[i] = 1;
+                }
+            }
+
+            _posts = await this._updateByList(_array);
+
+            this.setState((prevState, props) => {
+                prevState.list = _list;
+                prevState.checkArray = _array;
+                prevState.posts = _posts;
                 return true;
            });
         }
@@ -98,15 +126,17 @@ class Index extends React.Component {
 
     async _updateByList (checkArray) {
         let updateArray = [];
+
         for(let i in checkArray) {
             if(checkArray[i]==1) {
                 updateArray.push(this.state.list[i].val);
             }
         }
-        let arrStr = `${updateArray}`;
+
         const variables = {
             arrStr: updateArray,
         }
+
         const updateQuery = `
             query UpdatePosts($arrStr: [String]) {
                 getUpdatePosts(cateCheck:{
@@ -175,8 +205,7 @@ Index.getInitialProps = async function() {
             }
         }
     `
-    const res = await request('http://localhost:4000/graphql', initQuery)
-    console.log(`init ok.`);
+    const res = await request('http://localhost:4000/graphql', initQuery);
 
     return {
         init: res.getInitialPosts
