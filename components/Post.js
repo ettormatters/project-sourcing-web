@@ -38,11 +38,9 @@ class Post extends React.Component {
                     </div>
                 </div>
                 <div className="post-footer">
-                    <pre>
-                    <span>Category | <span>{this.props.category}</span></span>
-                    <span>Wanted | <span>{this.props.memberNumber}</span></span>
-                    <span><button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button> | <span id={this.props.clapCntId}>{this.props.clap}</span></span>
-                    </pre>  
+                    <pre><span>Category | <span>{this.props.category}</span>   </span>
+                    <span>Wanted | <span>{this.props.memberNumber}</span>   </span>
+                    <span>Clapped | <span id={this.props.clapCntId}>{this.props.clap}</span> <button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button></span></pre>  
                 </div>
 
                 <style jsx>{`
@@ -55,7 +53,10 @@ class Post extends React.Component {
                         border-radius: 3px;
                         box-sizing: border-box;
                         margin: 10px;
-                        padding: 10px 20px 0px 20px; 
+                        padding-right: 20px;
+                        padding-left: 20px; 
+                        padding-bottom: 0px;
+                        height: 300px;
                         min-width: 350px; /*screen size*/
                     }
 
@@ -127,7 +128,7 @@ class Post extends React.Component {
                     }
 
                     .post-footer {
-                        font-size: 10px;
+                        font-size: 12px;
                         color: #C4C4C4;
                         text-align: right;
                     }
