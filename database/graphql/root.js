@@ -46,6 +46,7 @@ const root = {
       newPost.data.desc = input.data.desc;
       newPost.data.hashTag = input.data.hashTag;
       newPost.data.memberNumber = input.data.memberNumber;
+      newPost.clap = input.clap;
       newPost.date = new Date();
 
       newPost.save(function(err){
@@ -63,26 +64,32 @@ const root = {
     return true;
   },
 
-  updateClap: async ({titleInput}) => {
+  updateClap: ({titleInput}) => {
     let query = {
       "title": titleInput.title
     }
 
-    let clapUpdatedPost = await Post.findOne(query);
+    let clapResult;
 
-    //update clap 
+    clapResult = Post.findOne(query, async (err,Picked)=>{
+      Picked.clap = Picked.clap + 1;
 
-    return clapUpdatedPost;
+      Picked.save(function(err){
+        if(err){
+          console.error(err);
+          return err;
+        }
+      });
+      return await Picked;
+    });
+    return clapResult;
   }
 };
 
 module.exports = root;
-
 
 /*
 if(Post.find({"title":`${input.title}`})){
   return null;
 } else {}
 */
-
-//db.posts.find( { "data.category": { $in: ["business","side-project" ] } } ).pretty()

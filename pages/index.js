@@ -166,10 +166,10 @@ class Index extends React.Component {
     }
 
     async _clapOnChange (event) {
-        //event title
-
+        let titleStr = event.target.id;
+        
         let variables = {
-            titleStr: "",
+            titleStr: titleStr,
         }
 
         const clapQuery = `
@@ -191,10 +191,10 @@ class Index extends React.Component {
                     date
                 }
             }
-            }
         `
         await request('http://localhost:4000/graphql', clapQuery, variables);
         return true;
+        
     }
 
     render(){

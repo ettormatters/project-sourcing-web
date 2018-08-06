@@ -6,6 +6,7 @@ const schemaQL = buildSchema(`
         author: String
         title: String!
         data: dataInput!
+        clap: Int
     }
 
     input dataInput {

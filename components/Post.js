@@ -1,6 +1,17 @@
 import React from 'react'
 
 class Post extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this._happen = this._happen.bind(this);
+      }
+    
+    _happen () {
+        let cnt = document.getElementById(this.props.clapCntId);
+        cnt.innerHTML = parseInt(cnt.innerHTML, 10) + 1;
+    }
+
     render(){
         return(
             <div className="post">
@@ -25,8 +36,9 @@ class Post extends React.Component {
                     <div className="post-footer">
                         <span>Category | <span>{this.props.category}</span></span>
                         <span>Wanted | <span>{this.props.memberNumber}</span></span>
-                        <span><button onClick={this.props.clapChange}>Clap</button> | <span>{this.props.clap}</span></span>
+                        <span><button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button> | <span id={this.props.clapCntId}>{this.props.clap}</span></span>
                     </div>
+
                 <style jsx>{`
                    .post {
                         border: 0.5px solid black;
@@ -61,5 +73,3 @@ class Post extends React.Component {
 }
 
 export default Post
-
-//onClick 함수 하나더 달아서, 이 파일에 함수박고, dom 으로 조작(바닐라관점)(안되면?)
