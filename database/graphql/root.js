@@ -12,6 +12,7 @@ const root = {
     let query = {
       "data.category": {$in: arr }
     }
+
     let dataByList = await Post.find(query).sort({date: -1});
 
     return dataByList;
@@ -21,6 +22,7 @@ const root = {
     let query = {
       "partyHead" : head
     }
+
     let byHeadResult = await Post.find(query);
 
     return byHeadResult;
@@ -44,6 +46,7 @@ const root = {
       newPost.data.desc = input.data.desc;
       newPost.data.hashTag = input.data.hashTag;
       newPost.data.memberNumber = input.data.memberNumber;
+      newPost.clap = input.clap;
       newPost.date = new Date();
 
       newPost.save(function(err){
@@ -52,7 +55,7 @@ const root = {
             return err;
           }
         });
-        
+
       return newPost;
   },
 
@@ -60,15 +63,33 @@ const root = {
     
     return true;
   },
+
+  updateClap: ({titleInput}) => {
+    let query = {
+      "title": titleInput.title
+    }
+
+    let clapResult;
+
+    clapResult = Post.findOne(query, async (err,Picked)=>{
+      Picked.clap = Picked.clap + 1;
+
+      Picked.save(function(err){
+        if(err){
+          console.error(err);
+          return err;
+        }
+      });
+      return await Picked;
+    });
+    return clapResult;
+  }
 };
 
 module.exports = root;
-
 
 /*
 if(Post.find({"title":`${input.title}`})){
   return null;
 } else {}
 */
-
-//db.posts.find( { "data.category": { $in: ["business","side-project" ] } } ).pretty()

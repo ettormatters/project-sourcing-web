@@ -1,6 +1,17 @@
 import React from 'react'
 
 class Post extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this._happen = this._happen.bind(this);
+      }
+    
+    _happen () {
+        let cnt = document.getElementById(this.props.clapCntId);
+        cnt.innerHTML = parseInt(cnt.innerHTML, 10) + 1;
+    }
+
     render(){
         return(
             <div className="post">
@@ -27,10 +38,13 @@ class Post extends React.Component {
                     </div>
                 </div>
                 <div className="post-footer">
-                    <pre><span>Category | <span>{this.props.category}</span>   </span>
-                    <span>Wanted | <span>{this.props.memberNumber}</span>   </span>
-                    <span>Clapped | <span>{this.props.clap}</span> </span></pre>
+                    <pre>
+                    <span>Category | <span>{this.props.category}</span></span>
+                    <span>Wanted | <span>{this.props.memberNumber}</span></span>
+                    <span><button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button> | <span id={this.props.clapCntId}>{this.props.clap}</span></span>
+                    </pre>  
                 </div>
+
                 <style jsx>{`
                    .post {
                         background-color: white;
