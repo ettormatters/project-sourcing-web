@@ -29,7 +29,7 @@ class PostView extends React.Component {
                         margin-top: 10px;
                         margin-right: 20%;
                         margin-bottom: 10px;
-                        display: flex; /*최대 2개*/
+                        display: flex;
                         align-items: center;
                         flex-wrap: wrap;
                         max-width: 700px;

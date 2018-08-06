@@ -6,7 +6,7 @@ class Header extends React.Component {
         return(
             <div className="header">
                 <span className="logo">
-                    <img src="../assets/image/Logo.PNG" alt="logo"/>
+                    <img src="#" alt="logo"/>
                 </span>
                 <span className="navigation">
                     <Link href="/">
@@ -46,7 +46,8 @@ class Header extends React.Component {
 
                     a {
                         margin: 15px;
-                        color: #707070;
+                        color: #A97000;
+                        opacity: 0.5;
                         transition: color 0.2s ease;
                         text-decoration: none;
                         /*state color*/
@@ -54,6 +55,7 @@ class Header extends React.Component {
 
                     a:hover {
                         color: black;
+                        opacity: 1.0;
                     }
 
                     @media screen and (max-width: 992px) {
