@@ -1,12 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
+import getConfig from 'next/config'
+const {publicRuntimeConfig} = getConfig()
 
 class Header extends React.Component {
     render(){
         return(
             <div className="header">
                 <span className="logo">
-                    <img src="../assets/image/Logo.PNG" alt="logo"/>
+                    <img src={`${publicRuntimeConfig.staticFolder}/image/Logo.png`} alt="logo"/>
                 </span>
                 <span className="navigation">
                     <Link href="/">
