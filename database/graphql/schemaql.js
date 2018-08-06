@@ -46,7 +46,8 @@ const schemaQL = buildSchema(`
     type Query {
         getInitialPosts: [Post]
         getUpdatePosts(cateCheck: cateCheck!): [Post]
-        searchByHead(head: String!): [Post]
+        getByTitle(titleInput: Title): Post
+        getByHead(head: String!): [Post]
     }
 
     type Mutation {
