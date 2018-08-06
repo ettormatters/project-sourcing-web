@@ -133,7 +133,7 @@ class Index extends React.Component {
 
         for(let i in checkArray) {
             if(checkArray[i]==1) {
-                updateArray.push(this.state.list[i].val);
+                updateArray.push(this.state.list[i].text);
             }
         }
 
