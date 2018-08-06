@@ -6,8 +6,7 @@ class Category extends React.Component {
         return (
             <div className="container-category">
                 <div>
-                    <fieldset className="category-order">
-                        <legend>Order</legend>
+                    <div className="category-order">
                         <div className="category-order-item">
                             <select name="category-order-item" onChange={this.props.selChange}>
                                 <option value={this.props.order[0].id}>{this.props.order[0].text}</option>
@@ -16,17 +15,16 @@ class Category extends React.Component {
                                 <option value={this.props.order[3].id}>{this.props.order[3].text}</option>
                             </select>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
                 <div>
-                    <fieldset className="category-list">
-                        <legend>List</legend>
+                    <div className="category-list">
                         {this.props.list.map((listItem, i) => {
                             return (
                                 <CheckBox key={i} id={listItem.id} text={listItem.text} boxChange={this.props.boxChange} />
                             )
                         })}
-                    </fieldset>
+                    </div>
                 </div>
                 <style jsx>{`
                     .container-category {
@@ -35,39 +33,39 @@ class Category extends React.Component {
                     }
 
                     .category-order {
-                        padding: 10px;
                         width: 170px;
+                        margin-bottom: 10px;
                     }
                     
-                    legend {
-                        color: #707070;
-                    }
-
                     select {
                         position: relative;
                         display: block;
                         margin: 0 auto;
                         width: 100%;
-                        max-width: 150px;
-                        color: #black;
+                        max-width: 170px;
+                        height: 30px;
+                        color: #A97000;
                         vertical-align: middle;
                         text-align: left;
                         user-select: none;
                         -webkit-touch-callout: none;
-                        background-color: #707070;
+                        background-color: rgba(0, 0, 0, 0);
                         z-index: 1;
-                        border-radius: 2px;
+                        border: 1px solid #B59453;
+                        border-radius: 7px;
                         cursor: pointer;
                         padding: 3px;
                     }
 
                     select:hover {
-                        background-color: #cccccc;
+                        background-color: #FFF9E3;
                     }
 
                     .category-list {
                         padding: 10px;
-                        width: 170px;
+                        max-width: 170px;
+                        border: 1px solid #B59453;
+                        border-radius: 7px;
                     }
 
                     button {

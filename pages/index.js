@@ -217,7 +217,7 @@ class Index extends React.Component {
                 <style jsx global>{`
                     body {
                         margin: 0;
-                        background-color: black;
+                        background-color: #FFFBEE;
                     }
                 `}</style>
                 <style jsx>{`

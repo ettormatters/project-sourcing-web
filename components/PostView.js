@@ -27,11 +27,12 @@ class PostView extends React.Component {
                 <style jsx>{`
                     .post-view {
                         margin-top: 10px;
-                        margin-right: 10%;
+                        margin-right: 20%;
                         margin-bottom: 10px;
                         display: flex; /*최대 2개*/
                         align-items: center;
                         flex-wrap: wrap;
+                        max-width: 700px;
                     }
 
                     @media screen and (max-width: 992px) {

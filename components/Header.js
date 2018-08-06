@@ -6,7 +6,7 @@ class Header extends React.Component {
         return(
             <div className="header">
                 <span className="logo">
-                    PARTY.com
+                    <img src="../assets/image/Logo.PNG" alt="logo"/>
                 </span>
                 <span className="navigation">
                     <Link href="/">
@@ -26,9 +26,9 @@ class Header extends React.Component {
                         display: flex;
                         align-items: center;
                         margin-bottom: 30px;
-                        background-color: black;
+                        background-color: #FFFBEE;
                         opacity: 0.9;
-                        box-shadow: 0 2px 4px rgba(255,255,255,0.12);
+                        box-shadow: 0 4px 8px rgba(0,0,0,0.12);
                         position: -webkit-sticky;
                         position: sticky;
                         top: 0;
@@ -36,7 +36,7 @@ class Header extends React.Component {
 
                     .logo {
                         flex: 20%;
-                        color: #F1E5CD;
+                        /*color: #F1E5CD;*/
                     }
 
                     .navigation {
@@ -53,7 +53,7 @@ class Header extends React.Component {
                     }
 
                     a:hover {
-                        color: white;
+                        color: black;
                     }
 
                     @media screen and (max-width: 992px) {
