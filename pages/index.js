@@ -223,6 +223,7 @@ class Index extends React.Component {
                 <style jsx>{`
                     .container {
                         display: flex;
+                        justify-content: center;
                         align-items: flex-start;
                     }
                 `} </style>

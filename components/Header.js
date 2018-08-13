@@ -11,18 +11,19 @@ class Header extends React.Component {
                     <img src={`${publicRuntimeConfig.staticFolder}/image/Logo.png`} alt="logo"/>
                 </span>
                 <span className="navigation">
-                    <Link href="/">
-                        <a>Stage</a>
-                    </Link>
-                    <Link href="/about">
-                        <a>About</a>
-                    </Link>
-                    <Link href="/profile">
-                        <a>Profile</a>
-                    </Link>
-                    <Link href="/create">
-                        <a>+</a>
-                    </Link>
+                    <div className="normal">
+                        <Link href="/">
+                            <a>Stage</a>
+                        </Link>
+                        <Link href="/about">
+                            <a>About</a>
+                        </Link>
+                        <Link href="/profile">
+                            <a>Profile</a>
+                        </Link>
+                    </div>
+                    <div className="cuttail">
+                    </div>
                 </span>
                 <style jsx>{`
                     .header {
