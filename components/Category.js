@@ -28,7 +28,9 @@ class Category extends React.Component {
                 </div>
                 <style jsx>{`
                     .container-category {
-                        margin: 10px 40px 10px 10%;
+                        margin-top: 30px;
+                        margin-right: 40px;
+                        margin-bottom: 10px;
                         padding: 10px;
                     }
 
@@ -55,6 +57,7 @@ class Category extends React.Component {
                         border-radius: 7px;
                         cursor: pointer;
                         padding: 3px;
+                        font-size: 18px;
                     }
 
                     select:hover {
@@ -68,26 +71,19 @@ class Category extends React.Component {
                         border-radius: 7px;
                     }
 
-                    button {
-                        border: none;
-                        background-color: #555555;
-                        color: white;
-                        padding: 5px;
-                        text-align: center;
-                        text-decoration: none;
-                        font-size: 5px;
-                        margin: 5px 0;
-                    }
-
                     @media screen and (max-width: 992px) {
                         .container-category {
-                            margin: 40px 20px 10px 40px;
+                            margin-top: 30px;
+                            margin-right: 10px;
+                            margin-bottom: 10px;
                         }
                     }
 
                     @media screen and (max-width: 600px) {
                         .container-category {
-                            margin: 40px 10px 10px 10px;
+                            margin-top: 30px;
+                            margin-right: 0px;
+                            margin-bottom: 10px;
                         }
                     }
                 `}</style>

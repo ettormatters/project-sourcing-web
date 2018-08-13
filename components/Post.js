@@ -15,10 +15,13 @@ class Post extends React.Component {
     render(){
         return(
             <div className="post">
+
                 <div className="post-popup">
                     <span className="talk-balloon"><img src="#" alt="balloon"/></span>
                     <span className="headTag">head hashTag</span>
                 </div>
+
+                <div className="post-itembox">
                 <div className="post-item">
                     <div className="post-icon"><img src="#" alt="Icon" width="65" height="75"/></div>
                     <div className="post-text">
@@ -37,9 +40,11 @@ class Post extends React.Component {
                         </div>
                     </div>
                 </div>
+                </div>
+
                 <div className="post-footer">
-                    <pre><span>Category | <span>{this.props.category}</span>   </span>
-                    <span>Wanted | <span>{this.props.memberNumber}</span>   </span>
+                    <pre><span><span className="optional-del">Category | </span><span>{this.props.category}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
+                    <span><span className="optional-del">Wanted | </span><span>{this.props.memberNumber}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
                     <span>Clapped | <span id={this.props.clapCntId}>{this.props.clap}</span> <button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button></span></pre>  
                 </div>
 
@@ -47,21 +52,24 @@ class Post extends React.Component {
                    .post {
                         background-color: white;
                         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(0, 0, 0, 0.28);
-                        cusor: pointer;
-                        transition-duration: 200ms;
-                        transition-property: transform, box-shadow, margin, opacity, width;
                         border-radius: 3px;
-                        box-sizing: border-box;
+
+                        transition-property: transform, box-shadow, margin, opacity, width;
+                        transition-duration: 200ms;
+                        cusor: pointer;
+
                         margin: 10px;
                         padding-right: 20px;
-                        padding-left: 20px; 
                         padding-bottom: 0px;
+                        padding-left: 20px;
                         height: 300px;
-                        min-width: 350px; /*screen size*/
+                        min-width: 700px; /*screen size*/
+                        
+                        position: relative;
                     }
 
                     .post .post-popup {
-                        visibility: hidden;
+                        display: none;
                     }
                     
                     .post .post-text .post-content .post-content-desc {
@@ -70,6 +78,7 @@ class Post extends React.Component {
 
                     .post:hover {
                         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.36), 0 0 0 2px rgba(0, 0, 0, 0.28);
+                        height: 300px;
                     }
 
                     .post:hover .post-popup {
@@ -80,12 +89,23 @@ class Post extends React.Component {
                         display: block;
                     }
 
+                    .post-itembox {
+                        height: 218px;
+                        margin: 20px 0;
+                        position: relative;
+                    }
+
                     .post-item {
+                        margin: 0;
+                        position: absolute;
+                        top: 50%;
+                        transform: translate(0, -50%);
                         display: flex;
                     }
 
                     .post-text {
                         margin-left: 10px;
+                        max-width: 640px;
                     }
 
                     .post-icon {
@@ -107,6 +127,7 @@ class Post extends React.Component {
                         margin-top: 10px;
                         margin-bottom: 20px;
                     }
+
                     .post-content-oneLine {
                         font-size: 20px;
                     }
@@ -131,6 +152,38 @@ class Post extends React.Component {
                         font-size: 12px;
                         color: #C4C4C4;
                         text-align: right;
+                        margin: 0;
+                        position: absolute;
+                        bottom: 10px;
+                        right: 20px;
+                    }
+
+                    .optional-add {
+                        display: none;
+                    }
+
+                    @media screen and (max-width: 992px) {
+                        .post {
+                            min-width: 600px;
+                        }
+                    }
+
+                    @media screen and (max-width: 800px) {
+                        .post {
+                            min-width: 450px;
+                        }
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .post {
+                            min-width: 300px;
+                        }
+                        .optional-del {
+                            display: none;
+                        }
+                        .optional-add {
+                            display: inline;
+                        }
                     }
                 `}</style>
             </div>
