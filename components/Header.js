@@ -20,6 +20,9 @@ class Header extends React.Component {
                     <Link href="/profile">
                         <a>Profile</a>
                     </Link>
+                    <Link href="/create">
+                        <a>+</a>
+                    </Link>
                 </span>
                 <style jsx>{`
                     .header {
