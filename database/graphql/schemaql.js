@@ -1,4 +1,4 @@
-const { buildSchema } = require('graphql');
+var { buildSchema } = require('graphql');
 
 const schemaQL = buildSchema(`
     input PostInput {
@@ -46,7 +46,8 @@ const schemaQL = buildSchema(`
     type Query {
         getInitialPosts: [Post]
         getUpdatePosts(cateCheck: cateCheck!): [Post]
-        searchByHead(head: String!): [Post]
+        getByTitle(titleInput: Title): Post
+        getByHead(head: String!): [Post]
     }
 
     type Mutation {

@@ -18,7 +18,16 @@ const root = {
     return dataByList;
   },
 
-  searchByHead: async ({head}) => {
+  getByTitle: async ({titleInput}) => {
+    let query = {
+      "title": titleInput.title
+    }
+
+    let result = Post.findOne(query);
+    return result;
+  },
+
+  getByHead: async ({head}) => {
     let query = {
       "partyHead" : head
     }

@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 class Post extends React.Component {
     constructor(props) {
@@ -46,6 +47,9 @@ class Post extends React.Component {
                     <pre><span><span className="optional-del">Category | </span><span>{this.props.category}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
                     <span><span className="optional-del">Wanted | </span><span>{this.props.memberNumber}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
                     <span>Clapped | <span id={this.props.clapCntId}>{this.props.clap}</span> <button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button></span></pre>  
+                    <Link href={{ pathname: '/post', query: { title: this.props.title } }}>
+                        <a>더 자세히 알고싶어요!</a>
+                    </Link>
                 </div>
 
                 <style jsx>{`
