@@ -1,4 +1,4 @@
-const { buildSchema } = require('graphql');
+var { buildSchema } = require('graphql');
 
 const schemaQL = buildSchema(`
     input PostInput {

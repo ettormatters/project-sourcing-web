@@ -3,7 +3,6 @@ import { request } from 'graphql-request'
 import {withRouter} from 'next/router'
 import Link from 'next/link'
 import Layout from '../components/Layout'
-import { throwServerError } from '../node_modules/apollo-link-http-common';
 
 class aPostView extends React.Component {
     constructor(props){
@@ -68,17 +67,27 @@ class aPostView extends React.Component {
     render(){
         return(
             <Layout>
-                <div>
-                    {this.state.post.title}
-                    {this.state.post.partyHead}
-                    {this.state.post.author}
-                    {this.state.post.date}
-                    {this.state.post.clap}
-                    {this.state.category}
-                    {this.state.oneLine}
-                    {this.state.desc}
-                    {this.state.hashTag}
-                    {this.state.memberNumber}
+                <div className="aPost-view">
+                    <div className="aPost-title">
+                        {this.state.post.title}
+                    </div>
+                    <div className="apost-oneLine">
+                        {this.state.oneLine}
+                    </div>
+                    <div className="aPost-header">
+                        <span>{this.state.post.partyHead}</span>
+                        <span>{this.state.post.author}</span>
+                        <span>{this.state.post.date}</span>
+                        <span>{this.state.memberNumber}</span>
+                        <span>{this.state.category}</span>
+                    </div>
+                    <div className="aPost-popUp">
+                        <span>{this.state.post.clap}</span>
+                        <span>{this.state.hashTag}</span>
+                    </div>
+                    <div className="aPost-desc">
+                        {this.state.desc}
+                    </div>
                 </div>
                 <style jsx>{`
 
@@ -89,7 +98,3 @@ class aPostView extends React.Component {
 }
 
 export default withRouter(aPostView);
-
-//partyHead -> Link
-//clap -> function
-//hashTag -> Link
