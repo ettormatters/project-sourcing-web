@@ -4,8 +4,6 @@ import React from 'react'
 class FBLogin extends React.Component {
     constructor(props){
         super(props);
-
-        //this.responseFacebook = this.responseFacebook.bind(this);
     }
 
     componentDidMount(){
@@ -53,10 +51,6 @@ class FBLogin extends React.Component {
         }
         `;
         document.body.appendChild(s);
-    }
-
-    responseFacebook(response) {
-        console.log(response)
     }
 
     render(){
