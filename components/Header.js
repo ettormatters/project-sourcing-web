@@ -3,6 +3,7 @@ import Link from 'next/link'
 import getConfig from 'next/config'
 const {publicRuntimeConfig} = getConfig()
 
+//if render 로 분기. <- sign 상태 = 세션체크
 class Header extends React.Component {
     render(){
         return(
@@ -23,9 +24,12 @@ class Header extends React.Component {
                         </Link>
                     </div>
                     <div className="cuttail">
-                        <Link href="/login">
-                            <a>Login</a>
+                        <Link href="/siginin">
+                            <a>Sign in</a>
                         </Link>  
+                        <Link href="/siginup">
+                            <a>Sign Up</a>
+                        </Link> 
                     </div>
                 </span>
                 <style jsx>{`
