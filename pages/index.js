@@ -6,10 +6,6 @@ import StageBanner from '../components/StageBanner'
 import Category from '../components/Category'
 import PostView from '../components/PostView'
 
-import { clapOnChange } from '../controllers/clapOnChange'
-import { updateByList } from '../controllers/updateByList'
-
-
 class Index extends React.Component {
     constructor(props) {
         super(props);
@@ -158,12 +154,72 @@ class Index extends React.Component {
         }
     }
 
-    _updateByList (checkArray) {
-        return updateByList(checkArray, this.state);
+    async _updateByList (checkArray) {
+        let updateArray = [];
+    
+        for(let i in checkArray) {
+            if(checkArray[i]==1) {
+                updateArray.push(this.state.list[i].text);
+            }
+        }
+    
+        let variables = {
+            arrStr: updateArray,
+        }
+    
+        const updateQuery = `
+            query UpdatePosts($arrStr: [String]) {
+                getUpdatePosts(cateCheck:
+                    {category: $arrStr}
+                ){
+                    partyHead
+                    author
+                    title
+                    data{
+                        category
+                        oneLine
+                        desc
+                        hashTag
+                        memberNumber
+                    }
+                    clap
+                    date
+                }
+        }
+        `
+        const upRes = await request('http://localhost:4000/graphql', updateQuery, variables)
+        return upRes.getUpdatePosts;
     }
 
-    _clapOnChange (e) {
-        clapOnChange(e);
+    async _clapOnChange (event) {
+        let titleStr = event.target.id;
+        
+        let variables = {
+            titleStr: titleStr,
+        }
+    
+        const clapQuery = `
+            mutation UpdateClap($titleStr: String!){
+                updateClap (titleInput:
+                    {title: $titleStr}
+                ){
+                    partyHead
+                    author
+                    title
+                    data{
+                        category
+                        oneLine
+                        desc
+                        hashTag
+                        memberNumber
+                    }
+                    clap
+                    date
+                }
+            }
+        `
+        await request('http://localhost:4000/graphql', clapQuery, variables);
+        return true;
     }
 }
 
