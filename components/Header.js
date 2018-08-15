@@ -23,6 +23,9 @@ class Header extends React.Component {
                         </Link>
                     </div>
                     <div className="cuttail">
+                        <Link href="/login">
+                            <a>Login</a>
+                        </Link>  
                     </div>
                 </span>
                 <style jsx>{`
