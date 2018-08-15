@@ -1,6 +1,5 @@
-# partyPeople
-team : "partyPeople",  
-domain plan : "party.people",  
-due date : 8/15,  
-description : "main project of shinernd & oeritas."  
+# ROAD TO PARTYPPLE COMPANY  
+domain : partytime.kr,  
+due date : 8/15...,  
+description :  
 
