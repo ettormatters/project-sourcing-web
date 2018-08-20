@@ -32,7 +32,7 @@ class Header extends React.Component {
                         display: flex;
                         align-items: center;
                         margin-bottom: 30px;
-                        background-color: #FFFBEE;
+                        background-color: #FFFFFF;
                         opacity: 0.9;
                         box-shadow: 0 4px 8px rgba(0,0,0,0.12);
                         position: -webkit-sticky;
@@ -42,7 +42,6 @@ class Header extends React.Component {
 
                     .logo {
                         flex: 20%;
-                        /*color: #F1E5CD;*/
                     }
 
                     .navigation {
@@ -52,7 +51,7 @@ class Header extends React.Component {
 
                     a {
                         margin: 15px;
-                        color: #A97000;
+                        color: #404040;
                         opacity: 0.5;
                         transition: color 0.2s ease;
                         text-decoration: none;

@@ -46,14 +46,14 @@ class Category extends React.Component {
                         width: 100%;
                         max-width: 170px;
                         height: 30px;
-                        color: #A97000;
+                        color: #000000;
                         vertical-align: middle;
                         text-align: left;
                         user-select: none;
                         -webkit-touch-callout: none;
                         background-color: rgba(0, 0, 0, 0);
                         z-index: 1;
-                        border: 1px solid #B59453;
+                        border: 1px solid #999999;
                         border-radius: 7px;
                         cursor: pointer;
                         padding: 3px;
@@ -61,13 +61,13 @@ class Category extends React.Component {
                     }
 
                     select:hover {
-                        background-color: #FFF9E3;
+                        background-color: #E6E6E6;
                     }
 
                     .category-list {
                         padding: 10px;
                         max-width: 170px;
-                        border: 1px solid #B59453;
+                        border: 1px solid #999999;
                         border-radius: 7px;
                     }
 

@@ -48,7 +48,7 @@ class Post extends React.Component {
                     <span><span className="optional-del">Wanted | </span><span>{this.props.memberNumber}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
                     <span>Clapped | <span id={this.props.clapCntId}>{this.props.clap}</span> <button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button></span></pre>  
                     <Link href={{ pathname: '/post', query: { title: this.props.title } }}>
-                        <a>더 자세히 알고싶어요!</a>
+                        <a>View more...</a>
                     </Link>
                 </div>
 

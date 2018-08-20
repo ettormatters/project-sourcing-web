@@ -17,7 +17,7 @@ class Footer extends React.Component {
                     }
 
                     .footer-item {
-                        color: #b3b3b3;
+                        color: #B3B3B3;
                     }
 
                     @media screen and (max-width: 992px) {
