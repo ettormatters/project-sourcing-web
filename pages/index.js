@@ -221,6 +221,40 @@ class Index extends React.Component {
         await request('http://localhost:4000/graphql', clapQuery, variables);
         return true;
     }
+
+    render(){
+        return(
+            <Layout>
+                <StageBanner />
+                <div className="container">
+                    <Category 
+                        order={this.state.order} 
+                        list={this.state.list} 
+                        boxChange={this._checkBoxOnChange} 
+                        selChange={this._orderSelectOnChange}
+                    />
+                    <PostView 
+                        posts={this.state.posts} 
+                        clapChange={this._clapOnChange} 
+                    />
+                </div>
+
+                <style jsx global>{`
+                    body {
+                        margin: 0;
+                        background-color: #FFFFFF;
+                    }
+                `}</style>
+                <style jsx>{`
+                    .container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                    }
+                `} </style>
+            </Layout>
+        );
+    }
 }
 
 Index.getInitialProps = async function() {
