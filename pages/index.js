@@ -1,5 +1,6 @@
 import React from 'react';
 import { request } from 'graphql-request'
+
 import Layout from '../components/Layout'
 import StageBanner from '../components/StageBanner'
 import Category from '../components/Category'
@@ -39,7 +40,7 @@ class Index extends React.Component {
         this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
         this._updateByList = this._updateByList.bind(this);
         this._clapOnChange = this._clapOnChange.bind(this); 
-      }
+    }
 
     componentWillMount(){
         console.log(">1componentWillMount");
@@ -61,30 +62,59 @@ class Index extends React.Component {
     componentDidUpdate(){
         console.log(">03componentDidUpdate");
     }
+    
+    render(){
+        return(
+            <Layout>
+                <StageBanner />
+                <div className="container">
+                    <Category 
+                        order={this.state.order} 
+                        list={this.state.list} 
+                        boxChange={this._checkBoxOnChange} 
+                        selChange={this._orderSelectOnChange}
+                    />
+                    <PostView 
+                        posts={this.state.posts} 
+                        clapChange={this._clapOnChange} 
+                    />
+                </div>
+
+                <style jsx global>{`
+                    body {
+                        margin: 0;
+                        background-color: #FFFBEE;
+                    }
+                `}</style>
+                <style jsx>{`
+                    .container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                    }
+                `} </style>
+            </Layout>
+        );
+    }
 
     _orderSelectOnChange (event) {
         console.log(event.target.value);
     }
-    
+
     async _checkBoxOnChange (event) {
         const boxChecked = event.target.checked;
         const id = event.target.id;
-
         let _list = this.state.list;
         let _array = this.state.checkArray;
         let _posts = this.state.posts;
-
         if(boxChecked==true) {
             _list[id].checked = true;
-
             for(let d in _list) {
                 if(_list[d].checked == true) {
                     _array[d] = 1;
                 }
             }
-
             _posts = await this._updateByList(_array);
-
             this.setState((prevState, props) => {
                 prevState.list = _list;
                 prevState.checkArray = _array;
@@ -93,20 +123,17 @@ class Index extends React.Component {
             });
         } else {
             _list[id].checked = false;
-
             for(let d in _list) {
                 if(_list[d].checked == false) {
                     _array[d] = 0;
                 }
             }
-
             let cnt = 0;
             for(let i in _array) {
                 if(_array[i] == 0){
                     cnt = cnt + 1;
                 }
             }
-
             if(cnt == 13) {
                 for(let i in _array) {
                     _array[i] = 1;
@@ -118,7 +145,6 @@ class Index extends React.Component {
             } else {
                 _posts = await this._updateByList(_array);
             }
-
             this.setState((prevState, props) => {
                 prevState.list = _list;
                 prevState.checkArray = _array;
@@ -130,17 +156,17 @@ class Index extends React.Component {
 
     async _updateByList (checkArray) {
         let updateArray = [];
-
+    
         for(let i in checkArray) {
             if(checkArray[i]==1) {
                 updateArray.push(this.state.list[i].text);
             }
         }
-
+    
         let variables = {
             arrStr: updateArray,
         }
-
+    
         const updateQuery = `
             query UpdatePosts($arrStr: [String]) {
                 getUpdatePosts(cateCheck:
@@ -171,7 +197,7 @@ class Index extends React.Component {
         let variables = {
             titleStr: titleStr,
         }
-
+    
         const clapQuery = `
             mutation UpdateClap($titleStr: String!){
                 updateClap (titleInput:
@@ -194,7 +220,6 @@ class Index extends React.Component {
         `
         await request('http://localhost:4000/graphql', clapQuery, variables);
         return true;
-        
     }
 
     render(){
