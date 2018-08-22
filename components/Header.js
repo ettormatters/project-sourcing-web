@@ -8,35 +8,77 @@ class Header extends React.Component {
     render(){
         return(
             <div className="header">
-                <span className="logo">
+                <div className="wide-view">
+                <div className="logo">
                     <img src={`${publicRuntimeConfig.staticFolder}/image/Logo.png`} alt="logo"/>
-                </span>
-                <span className="navigation">
-                    <div className="normal">
+                </div>
+                <span className="nav-hor">
+                    <span className="normal">
                         <Link href="/">
-                            <a>Stage</a>
+                            <a className="option">Stage</a>
                         </Link>
                         <Link href="/about">
-                            <a>About</a>
+                            <a className="option">About</a>
                         </Link>
                         <Link href="/profile">
-                            <a>Profile</a>
+                            <a className="option">Profile</a>
+                        </Link>
+                    </span>
+                    <span className="cuttail">
+                        <Link href="/siginin">
+                            <a className="option">Sign in</a>
+                        </Link>  
+                        <Link href="/siginup">
+                            <a className="option">Sign Up</a>
+                        </Link> 
+                    </span>
+                </span>
+                <span className="shortcut">
+                    <a className="shortcut-button" href="javascript:void(0)" onClick={(e)=>{
+                        console.log('clicked');
+                        const shortcut = e.target.parentElement.parentElement;
+                        const vernav = shortcut.parentElement.parentElement.querySelector('.nav-ver');
+                        console.log(shortcut);
+                        console.log(vernav);
+                        console.log(vernav.style);
+                        if (vernav.style.display === 'none'){
+                            vernav.style.display = 'block';
+                            shortcut.style.opacity = '1.0';
+                            console.log('?');
+                        } else {
+                            vernav.style.display = 'none';
+                            shortcut.style.opacity = '0.4';
+                        }
+                    }}>
+                        <img src={`${publicRuntimeConfig.staticFolder}/image/short.png`} alt="menu"/>
+                    </a>
+                </span>
+                </div>
+                <div className="nav-ver">
+                    <div className="normal">
+                        <Link href="/">
+                            <a className="option">Stage</a>
+                        </Link>
+                        <Link href="/about">
+                            <a className="option">About</a>
+                        </Link>
+                        <Link href="/profile">
+                            <a className="option">Profile</a>
                         </Link>
                     </div>
                     <div className="cuttail">
                         <Link href="/siginin">
-                            <a>Sign in</a>
+                            <a className="option">Sign in</a>
                         </Link>  
                         <Link href="/siginup">
-                            <a>Sign Up</a>
+                            <a className="option">Sign Up</a>
                         </Link> 
                     </div>
-                </span>
+                </div>
                 <style jsx>{`
                     .header {
                         z-index: 1000;
                         padding: 10px 10% 10px 10%;
-                        display: flex;
                         align-items: center;
                         margin-bottom: 30px;
                         background-color: #FFFFFF;
@@ -45,29 +87,65 @@ class Header extends React.Component {
                         position: -webkit-sticky;
                         position: sticky;
                         top: 0;
-                     }
+                    }
+
+                    .wide-view {
+                        display: flex;
+                    }
 
                     .logo {
                         flex: 20%;
                     }
 
-                    .navigation {
+                    .shortcut {
+                        display: none;
+                        margin: auto;
+                        opacity: 0.4;
+                        transition: color 0.2s ease;
+                        cursor: pointer;
+                    }
+
+                    .shortcut:hover {
+                        opacity: 1.0;
+                    }
+
+                    .nav-hor {
                         display: flex;
                         justify-content: flex-end;
+                        margin: auto;
                     }
 
-                    a {
+                    .option {
                         margin: 15px;
-                        color: #404040;
-                        opacity: 0.5;
+                        color: #A6A6A6;
+                        opacity: 1.0;
                         transition: color 0.2s ease;
                         text-decoration: none;
-                        /*state color*/
                     }
 
-                    a:hover {
-                        color: black;
+                    .option:hover {
+                        color: #000000;
                         opacity: 1.0;
+                    }
+
+                    .nav-ver {
+                        display: none;
+                        margin-top: 10px;
+                        padding-bottom: 10px;
+                        margin-bottom: 0px;
+                        border-top: 2px solid #000000;
+                        background-color: #F2F2F2;
+                        opacity: 1.0;
+                        align: center;
+                    }
+
+                    .nav-ver .normal, .nav-ver .cuttail {
+                        display: block;
+                    }
+
+                    .nav-ver .option {
+                        display: block;
+                        text-align: center;
                     }
 
                     @media screen and (max-width: 992px) {
@@ -75,16 +153,48 @@ class Header extends React.Component {
                             padding: 10px 40px 10px 40px;
                         }
                     }
-                    
+
+                    @media screen and (max-width: 760px) {
+                        .nav-hor {
+                            display: none;
+                        }
+
+                        .shortcut {
+                            display: flex;
+                        }
+                    }
+
                     @media screen and (max-width: 600px) {
                         .header {
                             padding: 10px 10px 10px 10px;
                         }
-                        /*a tag*/
                     }
                 `}</style>
             </div>
         );
+    }
+    componentDidMount(){
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.innerHTML = `
+            function Open(){
+                console.log('clicked');
+                const x = document.getElementByClassName("nav-ver");
+                const y = document.getElementByClassName("shortcut");
+                if (x.style.display === 'none'){
+                    x.style.display = 'block';
+                    y.style.opacity = '1.0';
+                } else {
+                    x.style.display = 'none';
+                    y.style.opacity = '0.4';
+                }
+            }
+
+            const el = document.getElementByClassName("shortcut-button");
+            el.addEventListener("onclick", Open, false);
+        `;
+        document.body.appendChild(s);
     }
 }
 
