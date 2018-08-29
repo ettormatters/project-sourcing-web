@@ -1,40 +1,21 @@
 import React from 'react';
 import { request } from 'graphql-request'
+import { createStore } from 'redux';
+import { Provider  } from 'react-redux';
+import partyApp from '../reducers/reducer';
 
 import Layout from '../components/Layout'
 import StageBanner from '../components/StageBanner'
 import Category from '../components/Category'
 import PostView from '../components/PostView'
 
+import { initPosts } from '../actions/action'
+
+const store = createStore(partyApp);
+
 class Index extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            order : [
-                { id: "recent", text: "Recently" },
-                { id: "high-clapped", text: "High Clapped" },
-                { id: "d-day", text: "D-Day" },
-                { id: "verified", text: "Verified" }
-            ],
-            list : [
-                { id: "0", val: "somethingNew", text: "Something New", checked:false },
-                { id: "1", val: "side-project", text: "Side Project", checked:false },
-                { id: "2", val: "club", text: "Club", checked:false },
-                { id: "3", val: "competition", text: "Competition", checked:false },
-                { id: "4", val: "study", text: "Study", checked:false },
-                { id: "5", val: "business", text: "Business", checked:false },
-                { id: "6", val: "body-training", text: "Body Training", checked:false },
-                { id: "7", val: "music", text: "Music", checked:false },
-                { id: "8", val: "video",text: "Video", checked:false },
-                { id: "9", val: "art", text: "Art", checked:false },
-                { id: "10", val: "travel", text: "Travel", checked:false },
-                { id: "11", val: "game", text: "Game", checked:false },
-                { id: "12", val: "activity", text: "Activity", checked:false }
-            ],
-            posts : this.props.init,
-            checkArray : [0,0,0,0,0,0,0,0,0,0,0,0,0]
-        };
 
         this._orderSelectOnChange = this._orderSelectOnChange.bind(this);
         this._checkBoxOnChange = this._checkBoxOnChange.bind(this);
@@ -48,6 +29,27 @@ class Index extends React.Component {
 
     componentDidMount(){
         console.log(">2componentDidMount");
+        
+        let initQuery = `
+                query {
+                    getInitialPosts {
+                        partyHead
+                        author
+                        title
+                        data{
+                            category
+                            oneLine
+                            desc
+                            hashTag
+                            memberNumber
+                        }
+                        clap
+                        date
+                    }
+                }
+            `
+        request('http://localhost:4000/graphql', initQuery)
+            .then((res)=>{store.dispatch(initPosts(res.getInitialPosts));})
     }
 
     shouldComponentUpdate(){
@@ -65,35 +67,34 @@ class Index extends React.Component {
     
     render(){
         return(
-            <Layout>
-                <StageBanner />
-                <div className="container">
-                    <Category 
-                        order={this.state.order} 
-                        list={this.state.list} 
-                        boxChange={this._checkBoxOnChange} 
-                        selChange={this._orderSelectOnChange}
-                    />
-                    <PostView 
-                        posts={this.state.posts} 
-                        clapChange={this._clapOnChange} 
-                    />
-                </div>
+            <Provider store = {store}>
+                <Layout>
+                    <StageBanner />
+                    <div className="container">
+                        <Category 
+                            boxChange={this._checkBoxOnChange} 
+                            selChange={this._orderSelectOnChange}
+                        />
+                        <PostView
+                            clapChange={this._clapOnChange} 
+                        />
+                    </div>
 
-                <style jsx global>{`
-                    body {
-                        margin: 0;
-                        background-color: #FFFBEE;
-                    }
-                `}</style>
-                <style jsx>{`
-                    .container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: flex-start;
-                    }
-                `} </style>
-            </Layout>
+                    <style jsx global>{`
+                        body {
+                            margin: 0;
+                            background-color: #FFFFFF;
+                        }
+                    `}</style>
+                    <style jsx>{`
+                        .container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: flex-start;
+                        }
+                    `} </style>
+                </Layout>
+            </Provider>
         );
     }
 
@@ -102,19 +103,24 @@ class Index extends React.Component {
     }
 
     async _checkBoxOnChange (event) {
+
         const boxChecked = event.target.checked;
         const id = event.target.id;
+
         let _list = this.state.list;
         let _array = this.state.checkArray;
         let _posts = this.state.posts;
+
         if(boxChecked==true) {
             _list[id].checked = true;
+
             for(let d in _list) {
                 if(_list[d].checked == true) {
                     _array[d] = 1;
                 }
             }
             _posts = await this._updateByList(_array);
+
             this.setState((prevState, props) => {
                 prevState.list = _list;
                 prevState.checkArray = _array;
@@ -123,17 +129,20 @@ class Index extends React.Component {
             });
         } else {
             _list[id].checked = false;
+
             for(let d in _list) {
                 if(_list[d].checked == false) {
                     _array[d] = 0;
                 }
             }
+
             let cnt = 0;
             for(let i in _array) {
                 if(_array[i] == 0){
                     cnt = cnt + 1;
                 }
             }
+
             if(cnt == 13) {
                 for(let i in _array) {
                     _array[i] = 1;
@@ -145,6 +154,7 @@ class Index extends React.Component {
             } else {
                 _posts = await this._updateByList(_array);
             }
+            
             this.setState((prevState, props) => {
                 prevState.list = _list;
                 prevState.checkArray = _array;
@@ -220,32 +230,6 @@ class Index extends React.Component {
         `
         await request('http://localhost:4000/graphql', clapQuery, variables);
         return true;
-    }
-}
-
-Index.getInitialProps = async function() {
-    let initQuery = `
-        query {
-            getInitialPosts {
-                partyHead
-                author
-                title
-                data{
-                    category
-                    oneLine
-                    desc
-                    hashTag
-                    memberNumber
-                }
-                clap
-                date
-            }
-        }
-    `
-    const res = await request('http://localhost:4000/graphql', initQuery);
-
-    return {
-        init: res.getInitialPosts
     }
 }
 

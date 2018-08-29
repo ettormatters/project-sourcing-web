@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import CheckBox from '../components/CheckBox'
 
 class Category extends React.Component {
@@ -91,5 +92,14 @@ class Category extends React.Component {
         );
     }
 }
+
+let mapStateToProps = (state) => {
+    return {
+        order: state.homebase.order,
+        list: state.homebase.list
+    };
+}
+
+Category = connect(mapStateToProps)(Category);
 
 export default Category
