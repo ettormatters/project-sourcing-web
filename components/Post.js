@@ -1,5 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
+import { connect } from 'react-redux';
+import { clapOnChange } from '../actions/action';
 
 class Post extends React.Component {
     constructor(props) {
@@ -24,7 +26,9 @@ class Post extends React.Component {
                 
                 <div className="itembox">
                     <div className="item">
-                        <div className="icon"><img src="#" alt="Icon" width="65" height="75"/></div>
+                        <div className="icon">
+                          <img src="#" alt="Icon" width="65" height="75"/>
+                        </div>
                         <div className="text">
                             <div className="category">{this.props.category}</div>
                             <div className="title">{this.props.title}</div>
@@ -38,6 +42,7 @@ class Post extends React.Component {
                                     <div className="hashTag"><a href="#">#<span>{this.props.hashTag}</span></a></div>
                                 </div>
                             <div className="info"><span>{this.props.partyHead}</span> ∙ <span>{this.props.author}</span> | <span>{this.props.date}</span> ~ <span>Due Day</span></div>
+
                         </div>
                     </div>
                 </div>
@@ -197,5 +202,13 @@ class Post extends React.Component {
         );
     }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        clapChange: (e) => dispatch(clapOnChange(e))
+    }
+}
+
+Post = connect(undefined, mapDispatchToProps)(Post);
 
 export default Post
