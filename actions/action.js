@@ -1,7 +1,6 @@
 import { request } from 'graphql-request'
 
 export const INITPOSTS = 'INITPOSTS';
-
 export function initPosts(posts) {
     return {
         type: INITPOSTS,
@@ -9,8 +8,17 @@ export function initPosts(posts) {
     };
 }
 
-export const SELECTSORT = 'SELECTSORT';
+export const LISTSORT = 'LISTSORT';
+export function listSort(_list, _array, _posts) {
+    return {
+        type: LISTSORT,
+        updList: _list,
+        updArray: _array,
+        updPosts: _posts
+    };
+}
 
+export const SELECTSORT = 'SELECTSORT';
 export function selectSort(_list, _array, _posts) {
     return {
         type: SELECTSORT,
@@ -116,12 +124,35 @@ function updateByList (checkArray) {
     }
 }
 
-export const LISTSORT = 'LISTSORT';
-export function listSort(_list, _array, _posts) {
-    return {
-        type: LISTSORT,
-        updList: _list,
-        updArray: _array,
-        updPosts: _posts
-    };
+export function clapOnChange(event) {
+    return async (dispatch, getState) => {
+        let titleStr = event.target.id;
+    
+        let variables = {
+            titleStr: titleStr,
+        }
+
+        const clapQuery = `
+            mutation UpdateClap($titleStr: String!){
+                updateClap (titleInput:
+                    {title: $titleStr}
+                ){
+                    partyHead
+                    author
+                    title
+                    data{
+                        category
+                        oneLine
+                        desc
+                        hashTag
+                        memberNumber
+                    }
+                    clap
+                    date
+                }
+            }
+        `
+        await request('http://localhost:4000/graphql', clapQuery, variables);
+        return true;
+    }
 }

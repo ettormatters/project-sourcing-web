@@ -19,7 +19,6 @@ class Index extends React.Component {
         super(props);
 
         this._orderSelectOnChange = this._orderSelectOnChange.bind(this);
-        this._clapOnChange = this._clapOnChange.bind(this); 
     }
 
     componentWillMount(){
@@ -70,12 +69,8 @@ class Index extends React.Component {
                 <Layout>
                     <StageBanner />
                     <div className="container">
-                        <Category 
-                            selChange={this._orderSelectOnChange}
-                        />
-                        <PostView
-                            clapChange={this._clapOnChange} 
-                        />
+                        <Category selChange={this._orderSelectOnChange} />
+                        <PostView/>
                     </div>
 
                     <style jsx global>{`
@@ -98,37 +93,6 @@ class Index extends React.Component {
 
     _orderSelectOnChange (event) {
         console.log(event.target.value);
-    }
-
-    async _clapOnChange (event) {
-        let titleStr = event.target.id;
-        
-        let variables = {
-            titleStr: titleStr,
-        }
-    
-        const clapQuery = `
-            mutation UpdateClap($titleStr: String!){
-                updateClap (titleInput:
-                    {title: $titleStr}
-                ){
-                    partyHead
-                    author
-                    title
-                    data{
-                        category
-                        oneLine
-                        desc
-                        hashTag
-                        memberNumber
-                    }
-                    clap
-                    date
-                }
-            }
-        `
-        await request('http://localhost:4000/graphql', clapQuery, variables);
-        return true;
     }
 }
 

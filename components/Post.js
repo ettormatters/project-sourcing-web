@@ -1,5 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
+import { connect } from 'react-redux';
+import { clapOnChange } from '../actions/action';
 
 class Post extends React.Component {
     constructor(props) {
@@ -23,24 +25,32 @@ class Post extends React.Component {
                 </div>
 
                 <div className="post-itembox">
-                <div className="post-item">
-                    <div className="post-icon"><img src="#" alt="Icon" width="65" height="75"/></div>
-                    <div className="post-text">
-                        <div className="post-header">
-                            <div className="post-header-title">{this.props.title}</div>
-                            <div className="post-header-subtitle"><span>{this.props.partyHead}</span> ∙ <span>{this.props.author}</span> | <span>{this.props.date}</span> ~ <span>Due Day</span></div>
+                    <div className="post-item">
+                        <div className="post-icon">
+                            <img src="#" alt="Icon" width="65" height="75"/>
                         </div>
-                        <div className="post-content">
-                            <div className="post-content-oneLine">
-                                <span>"<span>{this.props.oneLine}</span>"</span>
+                        <div className="post-text">
+                            <div className="post-header">
+                                <div className="post-header-title">
+                                    {this.props.title}
+                                </div>
+                                <div className="post-header-subtitle">
+                                    <span>{this.props.partyHead}</span> ∙ <span>{this.props.author}</span> | <span>{this.props.date}</span> ~ <span>Due Day</span>
+                                </div>
                             </div>
-                            <div className="post-content-desc">
-                                {this.props.desc}
+                            <div className="post-content">
+                                <div className="post-content-oneLine">
+                                    <span>"<span>{this.props.oneLine}</span>"</span>
+                                </div>
+                                <div className="post-content-desc">
+                                    {this.props.desc}
+                                </div>
+                                <div className="post-content-hashTag">
+                                    <a href="#">#<span>{this.props.hashTag}</span></a>
+                                </div>
                             </div>
-                            <div className="post-content-hashTag"><a href="#">#<span>{this.props.hashTag}</span></a></div>
                         </div>
                     </div>
-                </div>
                 </div>
 
                 <div className="post-footer">
@@ -194,5 +204,13 @@ class Post extends React.Component {
         );
     }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        clapChange: (e) => dispatch(clapOnChange(e))
+    }
+}
+
+Post = connect(undefined, mapDispatchToProps)(Post);
 
 export default Post
