@@ -35,14 +35,15 @@ const homebase = (state = initObj, action) => {
             });
         case SELECTSORT:
             return Object.assign({}, state, {
-                diff: action.diff
+                list: action.updList,
+                checkArray: action.updArray,
+                posts: action.updPosts
             });
         case LISTSORT:
             return Object.assign({}, state, {
-                value: state.value + state.diff,
-                list: action.newList,
-                checkArray: action.newArray,
-                posts: action.newPosts
+                list: action.updList,
+                checkArray: action.updArray,
+                posts: action.updPosts
             });
         default:
             return state;

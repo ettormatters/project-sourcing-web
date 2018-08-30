@@ -22,7 +22,7 @@ class Category extends React.Component {
                     <div className="category-list">
                         {this.props.list.map((listItem, i) => {
                             return (
-                                <CheckBox key={i} id={listItem.id} text={listItem.text} boxChange={this.props.boxChange} />
+                                <CheckBox key={i} id={listItem.id} text={listItem.text} />
                             )
                         })}
                     </div>
