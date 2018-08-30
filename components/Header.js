@@ -36,18 +36,21 @@ class Header extends React.Component {
                 <span className="shortcut">
                     <a className="shortcut-button" href="javascript:void(0)" onClick={(e)=>{
                         console.log('clicked');
-                        const shortcut = e.target.parentElement.parentElement;
+                        const shortcut = e.target.parentElement.parentElement.parentElement.querySelector('.shortcut');
+                        //const shortcuthover = e.target.parentElement.parentElement.parentElement.querySelector('.shortcut:hover');
                         const vernav = shortcut.parentElement.parentElement.querySelector('.nav-ver');
                         console.log(shortcut);
+                        //console.log(shortcuthover);
                         console.log(vernav);
                         console.log(vernav.style);
-                        if (vernav.style.display === 'none'){
+                        console.log(vernav.style.display);
+                        if (vernav.style.display == 'none'){
                             vernav.style.display = 'block';
-                            shortcut.style.opacity = '1.0';
+                            //shortcut.style.opacity = '1.0';
                             console.log('?');
                         } else {
                             vernav.style.display = 'none';
-                            shortcut.style.opacity = '0.4';
+                            //shortcut.style.opacity = '0.4';
                         }
                     }}>
                         <img src={`${publicRuntimeConfig.staticFolder}/image/short.png`} alt="menu"/>
@@ -172,29 +175,6 @@ class Header extends React.Component {
                 `}</style>
             </div>
         );
-    }
-    componentDidMount(){
-        const s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.innerHTML = `
-            function Open(){
-                console.log('clicked');
-                const x = document.getElementByClassName("nav-ver");
-                const y = document.getElementByClassName("shortcut");
-                if (x.style.display === 'none'){
-                    x.style.display = 'block';
-                    y.style.opacity = '1.0';
-                } else {
-                    x.style.display = 'none';
-                    y.style.opacity = '0.4';
-                }
-            }
-
-            const el = document.getElementByClassName("shortcut-button");
-            el.addEventListener("onclick", Open, false);
-        `;
-        document.body.appendChild(s);
     }
 }
 

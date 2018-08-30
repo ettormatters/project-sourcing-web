@@ -16,36 +16,34 @@ class Post extends React.Component {
     render(){
         return(
             <div className="post">
-
-                <div className="post-popup">
+                
+                <div className="popup">
                     <span className="talk-balloon"><img src="#" alt="balloon"/></span>
                     <span className="headTag">head hashTag</span>
                 </div>
-
-                <div className="post-itembox">
-                <div className="post-item">
-                    <div className="post-icon"><img src="#" alt="Icon" width="65" height="75"/></div>
-                    <div className="post-text">
-                        <div className="post-header">
-                            <div className="post-header-title">{this.props.title}</div>
-                            <div className="post-header-subtitle"><span>{this.props.partyHead}</span> ∙ <span>{this.props.author}</span> | <span>{this.props.date}</span> ~ <span>Due Day</span></div>
-                        </div>
-                        <div className="post-content">
-                            <div className="post-content-oneLine">
-                                <span>"<span>{this.props.oneLine}</span>"</span>
-                            </div>
-                            <div className="post-content-desc">
-                                {this.props.desc}
-                            </div>
-                            <div className="post-content-hashTag"><a href="#">#<span>{this.props.hashTag}</span></a></div>
+                
+                <div className="itembox">
+                    <div className="item">
+                        <div className="icon"><img src="#" alt="Icon" width="65" height="75"/></div>
+                        <div className="text">
+                            <div className="category">{this.props.category}</div>
+                            <div className="title">{this.props.title}</div>
+                            <div className="content">
+                                <div className="oneLine">
+                                    <span>"<span>{this.props.oneLine}</span>"</span>
+                                </div>
+                                <div className="desc">
+                                    {this.props.desc}
+                                </div>
+                                    <div className="hashTag"><a href="#">#<span>{this.props.hashTag}</span></a></div>
+                                </div>
+                            <div className="info"><span>{this.props.partyHead}</span> ∙ <span>{this.props.author}</span> | <span>{this.props.date}</span> ~ <span>Due Day</span></div>
                         </div>
                     </div>
                 </div>
-                </div>
 
-                <div className="post-footer">
-                    <pre><span><span className="optional-del">Category | </span><span>{this.props.category}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
-                    <span><span className="optional-del">Wanted | </span><span>{this.props.memberNumber}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
+                <div className="footer">
+                    <pre><span><span className="optional-del">Wanted | </span><span>{this.props.memberNumber}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
                     <span>Clapped | <span id={this.props.clapCntId}>{this.props.clap}</span> <button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button></span></pre>  
                     <Link href={{ pathname: '/post', query: { title: this.props.title } }}>
                         <a>View more...</a>
@@ -56,7 +54,7 @@ class Post extends React.Component {
                    .post {
                         background-color: white;
                         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(0, 0, 0, 0.28);
-                        border-radius: 3px;
+                        border-radius: 5px;
 
                         transition-property: transform, box-shadow, margin, opacity, width;
                         transition-duration: 200ms;
@@ -66,17 +64,17 @@ class Post extends React.Component {
                         padding-right: 20px;
                         padding-bottom: 0px;
                         padding-left: 20px;
-                        height: 300px;
+                        height: 250px;
                         min-width: 700px; /*screen size*/
                         
                         position: relative;
                     }
 
-                    .post .post-popup {
+                    .post .popup {
                         display: none;
                     }
                     
-                    .post .post-text .post-content .post-content-desc {
+                    .post .text .content .desc {
                         display: none;
                     }
 
@@ -85,74 +83,79 @@ class Post extends React.Component {
                         height: 300px;
                     }
 
-                    .post:hover .post-popup {
+                    .post:hover .popup {
                         visibility: visible;
                     }
 
-                    .post:hover .post-text .post-content .post-content-desc {
+                    .post:hover .text .content .desc {
                         display: block;
                     }
 
-                    .post-itembox {
+                    .itembox {
                         height: 218px;
                         margin: 20px 0;
                         position: relative;
                     }
 
-                    .post-item {
+                    .item {
                         margin: 0;
                         position: absolute;
                         top: 50%;
-                        transform: translate(0, -50%);
+                        transform: translate(0, -70%);
                         display: flex;
                     }
 
-                    .post-text {
+                    .text {
                         margin-left: 10px;
                         max-width: 640px;
                     }
 
-                    .post-icon {
+                    .icon {
                         border: 0.5px solid black;
                         border-radius: 5px;
                     }
 
-                    .post-header-title {
-                        font-size: 30px;
+                    .category {
+                        font-size: 13px;
+                        text-transform: uppercase;
+                        color: rgba(0,0,0,.54);
+                    }
+                    .title {
+                        font-size: 24px;
                         font-weight: bold;
                     }
 
-                    .post-header-subtitle {
-                        font-size: 15px;
-                        color: #C4C4C4;
+                    .subtitle {
+                        font-size: 13px;
+                        color: rgba(0,0,0,.54);
                     }
 
-                    .post-content {
+                    .content {
                         margin-top: 10px;
-                        margin-bottom: 20px;
+                        margin-bottom: 10px;
                     }
 
-                    .post-content-oneLine {
-                        font-size: 20px;
+                    .oneLine {
+                        font-size: 16px;
                     }
 
-                    .post-content-desc {
-                        font-size: 15px;
+                    .desc {
+                        font-size: 13px;
                     }
 
-                    .post-content-hashTag a:link, .post-content-hashTag a:visited {
-                        font-size: 15px;
+                    .hashTag a:link, .hashTag a:visited {
+                        font-size: 13px;
                         color: #707070;
                         text-decoration: none;
                     }
 
-                    .post-content-hashTag a:hover, .post-content-hashTag a:active {
+                    .hashTag a:hover, .hashTag a:active {
                         font-size: 15px;
                         color: black;
                         text-decoration: none;
                     }
 
-                    .post-footer {
+                    .footer {
                         font-size: 12px;
                         color: #C4C4C4;
                         text-align: right;

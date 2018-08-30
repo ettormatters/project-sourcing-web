@@ -1,4 +1,6 @@
 import React from 'react'
+import getConfig from 'next/config'
+const {publicRuntimeConfig} = getConfig()
 
 class StageBanner extends React.Component {
     render(){
@@ -7,19 +9,19 @@ class StageBanner extends React.Component {
                 <div className="StageBanner-Wrapper">
                     <div className="StageBanner-item">
                         <div className="Centering">
-                            <img src="https://wallpapercave.com/wp/jLw8Rbf.jpg"/>
+                            <img src={`${publicRuntimeConfig.staticFolder}/image/banner.jpg`}/>
                         </div>
                     </div>
                 </div>
                 <style jsx>{`
                     .StageBanner-Wrapper {
                         width: 100%;
-                        background-color: hsl(0, 0%, 8.5%);
+                        background-image: linear-gradient(to right, #4e5e75 , #714554);
                     }
                     
                     .StageBanner-item {
                         position: relative;
-                        height: 400px;
+                        height: 370px;
                         overflow: hidden;
                     }
 
