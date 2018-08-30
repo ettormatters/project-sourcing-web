@@ -1,7 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import Post from './Post'
 
 class PostView extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render(){
         return(
             <div className="post-view">
@@ -19,7 +24,6 @@ class PostView extends React.Component {
                             hashTag={post.data.hashTag}
                             memberNumber={post.data.memberNumber}
                             clap={post.clap}
-                            clapChange={this.props.clapChange}
                             clapCntId={post.title+i}
                         />
                     )
@@ -54,5 +58,13 @@ class PostView extends React.Component {
         );
     }
 }
+
+let mapStateToProps = (state) => {
+    return {
+        posts: state.homebase.posts
+    };
+}
+
+PostView = connect(mapStateToProps)(PostView);
 
 export default PostView
