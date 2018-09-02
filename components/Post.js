@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux';
 import { clapOnChange } from '../actions/action';
+import getConfig from 'next/config'
+const {publicRuntimeConfig} = getConfig()
 
 class Post extends React.Component {
     constructor(props) {
@@ -48,8 +50,16 @@ class Post extends React.Component {
                 </div>
 
                 <div className="footer">
-                    <pre><span><span className="optional-del">Wanted | </span><span>{this.props.memberNumber}</span><span className="optional-del"> </span><span className="optioanl-add"> ∙ </span></span>
-                    <span>Clapped | <span id={this.props.clapCntId}>{this.props.clap}</span> <button id={this.props.title} onClick={(event)=>{this.props.clapChange(event); this._happen();}}>Clap</button></span></pre>  
+                    <div className="toes_temp">
+                        <span className="optional-del">Wanted | </span>
+                        <span>{this.props.memberNumber}</span>
+                        <span className="optional-del"> </span>
+                        <span className="optioanl-add"> ∙ </span>
+                        <button id={this.props.title} className="clap-button-off" onClick={(event)=>{this.props.clapChange(event); this._happen();}}>
+                            <img className="off-item" src={`${publicRuntimeConfig.staticFolder}/image/clap_off.png`}/>
+                        </button>
+                        <span id={this.props.clapCntId}>{this.props.clap}</span>
+                    </div>
                     <Link href={{ pathname: '/post', query: { title: this.props.title } }}>
                         <a>View more...</a>
                     </Link>
@@ -58,7 +68,7 @@ class Post extends React.Component {
                 <style jsx>{`
                    .post {
                         background-color: white;
-                        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(0, 0, 0, 0.28);
+                        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .36), 0 0 0 1px rgba(0, 0, 0, .28);
                         border-radius: 5px;
 
                         transition-property: transform, box-shadow, margin, opacity, width;
@@ -85,7 +95,7 @@ class Post extends React.Component {
 
                     .post:hover {
                         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.36), 0 0 0 2px rgba(0, 0, 0, 0.28);
-                        height: 300px;
+                        height: 250px;
                     }
 
                     .post:hover .popup {
@@ -125,14 +135,15 @@ class Post extends React.Component {
                         text-transform: uppercase;
                         color: rgba(0,0,0,.54);
                     }
+
                     .title {
                         font-size: 24px;
                         font-weight: bold;
                     }
 
-                    .subtitle {
+                    .info {
                         font-size: 13px;
-                        color: rgba(0,0,0,.54);
+                        color: rgba(0,0,0,.84);
                     }
 
                     .content {
@@ -170,7 +181,37 @@ class Post extends React.Component {
                         right: 20px;
                     }
 
+                    .toes-temp {
+                        display: inline;
+                    }
+
                     .optional-add {
+                        display: none;
+                    }
+
+                    .clap-button-off {
+                        display: inline;
+                        background-color: transparent;
+                        border: none;
+                        width: 32px;
+                        margin-left: 5px;
+                        margin-right: 5px;
+                        cusor: pointer;
+                    }
+
+                    .off-item {
+                        width: 16px;
+                    }
+
+                    .clap-button-off:hover {
+                        margin-left: 0;
+                        margin-right: 10px;
+                    }
+                    .clap-button-off:hover .off-item{
+                        width: 32px;
+                    }
+
+                    .clap-button-on {
                         display: none;
                     }
 
