@@ -13,15 +13,13 @@ class FBLogin extends React.Component {
         s.innerHTML = `
 
         window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '650717358631482',
-            cookie     : true,
-            xfbml      : true,
-            version    : 'v3.1'
-        });
-            
-        FB.AppEvents.logPageView();   
-        
+            FB.init({
+                appId      : '650717358631482',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v3.1'
+            }); 
+            FB.AppEvents.logPageView();   
         };
 
         (function(d, s, id) {
@@ -30,15 +28,15 @@ class FBLogin extends React.Component {
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=650717358631482";
             fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
+        }(document, 'script', 'facebook-jssdk'));
 
-          function checkLoginState() {
+        function checkLoginState() {
             FB.getLoginStatus(function(response) {
                 statusChangeCallback(response);
             });
-          }
+        }
 
-          function statusChangeCallback(response) {
+        function statusChangeCallback(response) {
             console.log(response)
             if (response.status === 'connected') {
                 FB.api('/me', function (response) {
@@ -49,6 +47,7 @@ class FBLogin extends React.Component {
                   'into this app.';
             }
         }
+
         `;
         document.body.appendChild(s);
     }
@@ -56,8 +55,8 @@ class FBLogin extends React.Component {
     render(){
         return(
             <div>
-            <div id="status"></div>
-            <div className="fb-login-button" data-size="medium" data-auto-logout-link="true" data-onlogin="checkLoginState();"></div>
+                <div id="status"></div>
+                <div className="fb-login-button" data-size="medium" data-auto-logout-link="true" data-onlogin="checkLoginState();"></div>
             </div>
         );
     }
