@@ -31,6 +31,7 @@ class StageBanner extends React.Component {
                         left: 0;
                         right: 0;
                         bottom: 0;
+                        opacity: 0.5;
                         -webkit-transform: translate(50%,50%);
                         -ms-transform: translate(50%,50%);
                         transform: translate(50%,50%);
