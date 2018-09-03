@@ -1,10 +1,8 @@
-import React from 'react'
-import { request } from 'graphql-request'
-import {withRouter} from 'next/router'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-
-import { Button } from 'react-bootstrap';
+import React from 'react';
+import { request } from 'graphql-request';
+import {withRouter} from 'next/router';
+import Link from 'next/link';
+import Layout from '../components/Layout';
 
 class aPostView extends React.Component {
     constructor(props){
@@ -91,7 +89,6 @@ class aPostView extends React.Component {
                         {this.state.desc}
                     </div>
                 </div>
-                <Button>Default</Button>
             </Layout>
         );
     }

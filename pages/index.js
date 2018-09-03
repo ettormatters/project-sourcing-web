@@ -1,16 +1,18 @@
 import React from 'react';
 import { request } from 'graphql-request'
 import { createStore, applyMiddleware } from 'redux';
-import { Provider  } from 'react-redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import partyApp from '../reducers/reducer';
 
-import Layout from '../components/Layout'
-import StageBanner from '../components/StageBanner'
-import Category from '../components/Category'
-import PostView from '../components/PostView'
+import Layout from '../components/Layout';
+import StageBanner from '../components/StageBanner';
+import Category from '../components/Category';
+import PostView from '../components/PostView';
 
-import { initPosts } from '../actions/action'
+import { initPosts } from '../actions/action';
+
+import css from '../style/hwistyle.css';
 
 const store = createStore(partyApp, applyMiddleware(thunk));
 
@@ -114,26 +116,18 @@ class Index extends React.Component {
             <Provider store = {store}>
                 <Layout>
                     <StageBanner />
-                    <div className="container">
+                    <div className={css.Container}>
                         <Category selChange={this._orderSelectOnChange} />
                             <div id="status"></div>
                             <div className="fb-login-button" data-button-type="continue_with" data-size="medium" data-auto-logout-link="true" data-onlogin="checkLoginState();"></div>   
                         <PostView/>
                     </div>
-
                     <style jsx global>{`
                         body {
                             margin: 0;
                             background-color: #FFFFFF;
                         }
                     `}</style>
-                    <style jsx>{`
-                        .container {
-                            display: flex;
-                            justify-content: center;
-                            align-items: flex-start;
-                        }
-                    `} </style>
                 </Layout>
             </Provider>
         );

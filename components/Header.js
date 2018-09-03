@@ -1,7 +1,7 @@
-import React from 'react'
-import Link from 'next/link'
-import css from '../style/hwistyle.css'
-import getConfig from 'next/config'
+import React from 'react';
+import Link from 'next/link';
+import css from '../style/hwistyle.css';
+import getConfig from 'next/config';
 const {publicRuntimeConfig} = getConfig()
 
 //if render 로 분기. <- sign 상태 = 세션체크

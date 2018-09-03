@@ -1,3 +1,10 @@
+/*index*/
+.Container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 /*Category*/
 .CategoryBox {
     margin-top: 30px;
