@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/oeritas/partyPeople#readme",
   "dependencies": {
+    "@zeit/next-css": "^0.2.0",
     "apollo-boost": "^0.1.12",
     "cors": "^2.8.4",
     "crypto": "^1.0.1",
