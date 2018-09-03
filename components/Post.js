@@ -55,9 +55,11 @@ class Post extends React.Component {
                         <span>{this.props.memberNumber}</span>
                         <span className="optional-del"> </span>
                         <span className="optioanl-add"> ∙ </span>
+                        <div className="clapbox">
                         <button id={this.props.title} className="clap-button-off" onClick={(event)=>{this.props.clapChange(event); this._happen();}}>
                             <img className="off-item" src={`${publicRuntimeConfig.staticFolder}/image/clap_off.png`}/>
                         </button>
+                        </div>
                         <span id={this.props.clapCntId}>{this.props.clap}</span>
                     </div>
                     <Link href={{ pathname: '/post', query: { title: this.props.title } }}>
@@ -189,26 +191,28 @@ class Post extends React.Component {
                         display: none;
                     }
 
+                    .clapbox {
+                        display: inline;
+                        position: relative;
+                    }
+
                     .clap-button-off {
                         display: inline;
                         background-color: transparent;
                         border: none;
-                        width: 32px;
-                        margin-left: 5px;
-                        margin-right: 5px;
-                        cusor: pointer;
+                        width: 35px;
                     }
 
                     .off-item {
                         width: 16px;
+                        transition: width 0.2s ease;
+                        position: absolute;
+                        bottom: 0;
+                        right: 5px;
                     }
 
-                    .clap-button-off:hover {
-                        margin-left: 0;
-                        margin-right: 10px;
-                    }
                     .clap-button-off:hover .off-item{
-                        width: 32px;
+                        width: 29px;
                     }
 
                     .clap-button-on {
