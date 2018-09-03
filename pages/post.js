@@ -4,6 +4,8 @@ import {withRouter} from 'next/router'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 
+import { Button } from 'react-bootstrap';
+
 class aPostView extends React.Component {
     constructor(props){
         super(props);
@@ -89,9 +91,7 @@ class aPostView extends React.Component {
                         {this.state.desc}
                     </div>
                 </div>
-                <style jsx>{`
-
-                `}</style>
+                <Button>Default</Button>
             </Layout>
         );
     }

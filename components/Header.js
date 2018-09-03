@@ -1,5 +1,4 @@
 import React from 'react'
-import { Navbar } from 'react-bootstrap';
 import Link from 'next/link'
 import css from '../style/hwistyle.css'
 import getConfig from 'next/config'
