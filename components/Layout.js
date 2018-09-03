@@ -1,20 +1,15 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
+import css from '../style/hwistyle.css'
 
 class Layout extends React.Component {
     render(){
         return(
-            <div>
+            <div className={css.Layout}>
                 <Header />
                 {this.props.children}
                 <Footer />
-                
-                <style jsx>{`
-                    div {
-                        margin-top: 10px;
-                    }
-                `}</style>
             </div>
         );
     }

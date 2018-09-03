@@ -10,7 +10,7 @@ class PostView extends React.Component {
 
     render(){
         return(
-            <div className={css.postView}>
+            <div className={css.PostView}>
                 {this.props.posts.map((post, i) => {
                     return (
                         <Post 
