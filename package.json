@@ -33,6 +33,7 @@
     "mongoose": "^5.2.6",
     "next": "^6.1.1",
     "react": "^16.4.1",
+    "react-bootstrap": "^0.32.3",
     "react-dom": "^16.4.1",
     "react-facebook-login": "^4.0.1",
     "react-modal": "^3.5.1",

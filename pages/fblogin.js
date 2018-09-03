@@ -1,5 +1,4 @@
 import React from 'react'
-//import FacebookLogin from 'react-facebook-login';
 
 class FBLogin extends React.Component {
     constructor(props){
