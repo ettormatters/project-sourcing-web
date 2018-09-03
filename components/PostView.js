@@ -1,7 +1,7 @@
 import React from 'react'
-const PostViewCSS = require('../style/PostViewCSS.css')
 import { connect } from 'react-redux';
 import Post from './Post'
+import css from '../style/hwistyle.css'
 
 class PostView extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class PostView extends React.Component {
 
     render(){
         return(
-            <div className="post-view">
+            <div className={css.postView}>
                 {this.props.posts.map((post, i) => {
                     return (
                         <Post 
@@ -29,9 +29,6 @@ class PostView extends React.Component {
                         />
                     )
                 })}
-                <style jsx>{`
-                    
-                `}</style>
             </div>
         );
     }
