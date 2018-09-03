@@ -1,4 +1,5 @@
 import React from 'react'
+const PostViewCSS = require('../style/PostViewCSS.css')
 import { connect } from 'react-redux';
 import Post from './Post'
 
@@ -29,30 +30,7 @@ class PostView extends React.Component {
                     )
                 })}
                 <style jsx>{`
-                    .post-view {
-                        margin-top: 30px;
-                        margin-bottom: 10px;
-                        margin-left: 0px;
-                        display: flex;
-                        align-items: center;
-                        flex-wrap: wrap;
-                        max-width: 700px;
-                    }
-
-                    @media screen and (max-width: 992px) {
-                        .post-view {
-                            margin-top: 30px;
-                            margin-bottom: 10px;
-                        }
-                    }
-
-                    @media screen and (max-width: 600px) {
-                        .post-view {
-                            margin-top: 30px;
-                            margin-bottom: 10px;
-                            min-width: 390px;
-                        }
-                    }
+                    
                 `}</style>
             </div>
         );
