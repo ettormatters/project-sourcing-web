@@ -108,10 +108,7 @@
     align-items: center;
     margin-bottom: 30px;
     background-color: #FFFFFF;
-    opacity: 0.9;
     box-shadow: 0 4px 8px rgba(0,0,0,0.12);
-    position: -webkit-sticky;
-    position: sticky;
     top: 0;
     display: flex;
 }
