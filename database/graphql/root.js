@@ -1,6 +1,35 @@
 const Post = require('../mongoose/PostSchema');
+const User = require('../mongoose/UserSchema');
 
 const root = {
+  createUser: async ({input}) => {
+    let newUser;
+    newUser = new User();
+
+    let id = require('crypto').randomBytes(10).toString('hex');
+    newUser.id = id;
+
+    newUser.nickName = input.nickName;
+    newUser.email = input.email;
+    newUser.pw = input.pw;
+
+    //newUser.info.image = input.info.image;
+    newUser.info.intro = input.info.intro;
+    newUser.info.hashTag = input.info.hashTag;
+    newUser.info.location = input.info.location;
+
+    newUser.date = new Date();
+
+    newUser.save(function(err){
+        if(err){
+          console.error(err);
+          return err;
+        }
+      });
+
+    return newUser;
+  },
+
   getInitialPosts: async () => {
     let recentAll = await Post.find().sort({date: -1});
 

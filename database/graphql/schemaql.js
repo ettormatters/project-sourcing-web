@@ -1,6 +1,12 @@
 var { buildSchema } = require('graphql');
 
 const schemaQL = buildSchema(`
+    input SignUpInput {
+        nickName: String!
+        email: String!
+        pw: String!
+    }
+
     input PostInput {
         partyHead: String!
         author: String
@@ -25,12 +31,19 @@ const schemaQL = buildSchema(`
         title: String!
     }
 
-    type Data {
-        category: String
-        oneLine: String
-        desc: String
-        hashTag: String
-        memberNumber: Int
+    type User {
+        id: String!
+        nickName: String!
+        email: String!
+        pw: String!
+        info: Info
+        date: Date
+    }
+
+    type Info {
+        intro: String
+        hashTag: [String]
+        location: String
     }
 
     type Post {
@@ -43,6 +56,14 @@ const schemaQL = buildSchema(`
         date: String
     }
 
+    type Data {
+        category: String
+        oneLine: String
+        desc: String
+        hashTag: String
+        memberNumber: Int
+    }
+
     type Query {
         getInitialPosts: [Post]
         getUpdatePosts(cateCheck: cateCheck!): [Post]
@@ -51,6 +72,7 @@ const schemaQL = buildSchema(`
     }
 
     type Mutation {
+        createUser(input: SignUpInput): User
         createPost(input: PostInput): Post
         updatePost(input: PostInput): Post
         updateClap(titleInput: Title): Post
