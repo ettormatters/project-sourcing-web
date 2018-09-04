@@ -19,7 +19,7 @@ class Header extends React.Component {
                     <Link href="/about">
                         <a className={css.Option}>About</a>
                     </Link>
-                    <a className={css.DropdownOption}>
+                    <div className={css.DropdownOption}>
                         <details className={css.Details}>
                             <summary className={css.Summary}>Title</summary>
                                 <img className={css.ArrowShadow} src={`${publicRuntimeConfig.staticFolder}/image/arrowshadow.png`}/>
@@ -41,7 +41,7 @@ class Header extends React.Component {
                                     </div>
                                 </ul>
                         </details>
-                    </a>
+                    </div>
                 </div>
             </div>
         );
