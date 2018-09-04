@@ -29,23 +29,29 @@ class Post extends React.Component {
                 
                 <div className={css.ItemBox}>
                     <div className={css.Item}>
-                        <div className={css.Icon}>
-                          <img src="#" alt="Icon" width="65" height="75"/>
+                        <div className={css.Left}>
+                            <span className={css.Hide}>Space</span>
+                            <div className={css.Icon}>
+                                <img src="#" alt="Icon"/>
+                            </div>
                         </div>
                         <div className={css.Text}>
                             <div className={css.Category}>{this.props.category}</div>
                             <div className={css.Title}>{this.props.title}</div>
+                            <div className={css.OneLine}>
+                                <span>"<span>{this.props.oneLine}</span>"</span>
+                            </div>
                             <div className={css.Content}>
-                                <div className={css.OneLine}>
-                                    <span>"<span>{this.props.oneLine}</span>"</span>
-                                </div>
                                 <div className={css.Desc}>
                                     {this.props.desc}
+                                    <span> </span>
+                                    <Link href={{ pathname: '/post', query: { title: this.props.title } }}>
+                                        <a>View more...</a>
+                                    </Link>
                                 </div>
                                     <div className={css.HashTagBox}><a className={css.HashTag}  href="#">#<span>{this.props.hashTag}</span></a></div>
                                 </div>
                             <div className={css.Info}><span>{this.props.partyHead}</span> ∙ <span>{this.props.author}</span> | <span>{this.props.date}</span> ~ <span>Due Day</span></div>
-
                         </div>
                     </div>
                 </div>
@@ -63,9 +69,6 @@ class Post extends React.Component {
                         </div>
                         <span id={this.props.clapCntId}>{this.props.clap}</span>
                     </div>
-                    <Link href={{ pathname: '/post', query: { title: this.props.title } }}>
-                        <a>View more...</a>
-                    </Link>
                 </div>
             </div>
         );
