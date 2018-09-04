@@ -1,4 +1,4 @@
-const Post = require('../mongoose/schemaMG');
+const Post = require('../mongoose/PostSchema');
 
 const root = {
   getInitialPosts: async () => {

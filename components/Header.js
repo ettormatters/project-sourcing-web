@@ -26,10 +26,10 @@ class Header extends React.Component {
                         </Link>
                     </span>
                     <span className={css.Cuttail}>
-                        <Link href="/siginin">
+                        <Link href="/signin">
                             <a className={css.Option}>Sign in</a>
                         </Link>  
-                        <Link href="/siginup">
+                        <Link href="/signup">
                             <a className={css.Option}>Sign Up</a>
                         </Link> 
                     </span>
