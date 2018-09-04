@@ -11,7 +11,7 @@ class Header extends React.Component {
             <div className={css.Header}>
                 <div className={css.Logo}>
                     <img src={`${publicRuntimeConfig.staticFolder}/image/Logo.png`} alt="logo"/>
-                </div>
+                </div> 
                 <div className={css.NavBar}>
                     <Link href="/">
                         <a className={css.Option}>Stage</a>
