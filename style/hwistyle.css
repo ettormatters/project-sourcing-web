@@ -103,7 +103,7 @@
 
 /*Header*/
 .Header {
-    z-index: 1000;
+    z-index: 100;
     padding: 10px 10% 10px 10%;
     align-items: center;
     margin-bottom: 30px;
@@ -113,9 +113,6 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-}
-
-.WideView {
     display: flex;
 }
 
@@ -123,19 +120,7 @@
     flex: 20%;
 }
 
-.Shortcut {
-    display: none;
-    margin: auto;
-    opacity: 0.4;
-    transition: color 0.2s ease;
-    cursor: pointer;
-}
-
-.Shortcut:hover {
-    opacity: 1.0;
-}
-
-.NavHor {
+.NavBar {
     display: flex;
     justify-content: flex-end;
     margin: auto;
@@ -143,7 +128,7 @@
 
 .Option {
     margin: 15px;
-    color: #A6A6A6;
+    color: #a6a6a6;
     opacity: 1.0;
     transition: color 0.2s ease;
     text-decoration: none;
@@ -154,39 +139,90 @@
     opacity: 1.0;
 }
 
-.NavVer {
-    display: none;
-    margin-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 0px;
-    border-top: 2px solid #000000;
-    background-color: #F2F2F2;
+.DropdownOption {
+    margin: 15px;
+    text-decoration: none; 
+    position: relative;
+}
+
+.Summary {
+    margin: auto;
+    cursor: pointer;
+    color: #a6a6a6;
+    transition: color 0.2s ease;
+}
+
+.Summary:hover {
+    color: #000000;
     opacity: 1.0;
-    align: center;
 }
 
-.NavVer .Normal, .NavVer .Cuttail {
+.Summary::-webkit-details-marker {
+    color: #a6a6a6;
+}
+
+.Summary:hover .Summary::-webkit-details-marker {
+    color: #000000;
+}
+
+.ArrowShadow {
+    height: 17px;
+    position: absolute;
+    display: inline-block;
+    z-index: 150;
+    top: 18.3px;
+    right: -0.75px;
+    left: auto;
+    opacity: 0.15;
+}
+
+.Arrow {
+    position: absolute;
+    display: inline-block;
+    z-index: 300;
+    top: 20px;
+    right: 0;
+    left: auto;
+}
+
+.DetailsMenu {
+    z-index: 200;
+    width: 150px;
+    margin-top: 8px;
+    position: absolute;
+    top: 110%;
+    right: -15px;
+    padding: 5px 0;
+    list-style: none;
+    background-color: #fff;
+    border: 1px solid rgba(27,31,35,0.15);
+    border-radius: 4px;
+    box-shadow: 0 3px 12px rgba(27,31,35,0.15);
     display: block;
 }
 
-.NavVer .Option {
+.MenuList {
+    list-style: none;
+}
+
+.MenuItem {
+    color: #24292e;
     display: block;
-    text-align: center;
+    text-decoration: none;
+    padding: 4px 15px;
+    font-size: 14px;
+}
+
+.Divider {
+    list-style: none;
+    height: 1px;
+    margin: 8px 1px;
+    background-color: #e1e4e8;
 }
 
 @media screen and (max-width: 992px) {
     .Header {
         padding: 10px 40px 10px 40px;
-    }
-}
-
-@media screen and (max-width: 760px) {
-    .NavHor {
-        display: none;
-    }
-
-    .Shortcut {
-        display: flex;
     }
 }
 
@@ -204,18 +240,16 @@
 /*Post*/
 .Post {
     background-color: white;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .36), 0 0 0 1px rgba(0, 0, 0, .28);
     border-radius: 5px;
 
     transition-property: transform, box-shadow, margin, opacity, width;
     transition-duration: 200ms;
-    cusor: pointer;
 
     margin: 10px;
     padding-right: 20px;
     padding-bottom: 0px;
     padding-left: 20px;
-    height: 250px;
+    height: 255px;
     min-width: 700px; /*screen size*/
     
     position: relative;
@@ -225,21 +259,13 @@
     display: none;
 }
 
-.Post .Text .Content .Desc {
-    display: none;
-}
-
 .Post:hover {
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.36), 0 0 0 2px rgba(0, 0, 0, 0.28);
-    height: 250px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+    height: 255px;
 }
 
 .Post:hover .Popup {
     visibility: visible;
-}
-
-.Post:hover .Text .Content .Desc {
-    display: block;
 }
 
 .ItemBox {
@@ -251,7 +277,7 @@
 .Item {
     margin: 0;
     position: absolute;
-    top: 50%;
+    top: 53%;
     transform: translate(0, -70%);
     display: flex;
 }
@@ -261,8 +287,14 @@
     max-width: 640px;
 }
 
+.Hide {
+    font-size: 13px;
+    visibility: hidden;
+}
+
 .Icon {
-    border: 0.5px solid black;
+    width: 50px;
+    height: 55px;
     border-radius: 5px;
 }
 
@@ -313,7 +345,7 @@
     text-align: right;
     margin: 0;
     position: absolute;
-    bottom: 10px;
+    bottom: 25px;
     right: 20px;
 }
 
@@ -347,6 +379,7 @@
 
 .ClapOff:hover .OffItem{
     width: 29px;
+    cursor: pointer;
 }
 
 .ClapOn {
