@@ -37,7 +37,6 @@ const schemaQL = buildSchema(`
         email: String!
         pw: String!
         info: Info
-        date: Date
     }
 
     type Info {
