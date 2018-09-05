@@ -1,5 +1,7 @@
 import React from 'react'
+import Link from 'next/link'
 import Layout from '../components/Layout'
+import css from '../style/hwistyle.css'
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -66,25 +68,40 @@ class SignUp extends React.Component {
         return(
             <Layout>
                 <div>
-                    <form onSubmit={this._handleSubmit}>
-                        <input name="nickName" type="text" placeholder="NICKNAME" onChange={this._handleNickChange} />
-                        <br/>
-                        <input name="email" type="email" placeholder="EMAIL" onChange={this._handleEmailChange} />
-                        <br/>
-                        <input name="password" type="password" placeholder="PW" onChange={this._handlePassChange} />
-                        <br/>
-                        <select name="age" onChange={this._handleAgeChange} defaultValue="20">
-                            <option value="10">10대</option>
-                            <option value="20">20대</option>
-                            <option value="30">30대</option>
-                            <option value="40">40대</option>
-                            <option value="50">50대</option>
-                            <option value="60">60대</option>
-                            <option value="70">70대</option>
-                            <option value="80">80대</option>
-                        </select>
-                        <br/>
-                        <input type="button" value="Submit" onClick={this._handleSubmit} />
+                    <form className={css.Sign} onSubmit={this._handleSubmit}>
+                        <label for="Nickname" className={css.SUInputLabel}><span>Nickname</span></label>
+                        <div className={css.SignUpInput}>
+                            <input className={css.SUInputItem} id="Nickname" name="nickName" type="text" onChange={this._handleNickChange} />
+                        </div>
+                        <label for="Email" className={css.SUInputLabel}><span>Your Email</span></label>
+                        <div className={css.SignUpInput}>
+                            <input className={css.SUInputItem} id="Email" name="email" type="email" onChange={this._handleEmailChange} />
+                        </div>
+                        <label for="Password" className={css.SUInputLabel}><span>Password</span></label>
+                        <div className={css.SignUpInput}>
+                            <input className={css.SUInputItem} id="Password" name="password" type="password" placeholder="8~16 letters" onChange={this._handlePassChange} />
+                        </div>
+                        <label for="PWcheck" className={css.SUInputLabel}><span>Check Password</span></label>
+                        <div className={css.SignUpInput}>
+                            <input className={css.SUInputItem} id="PWcheck" name="pwcheck" type="password" placeholder="Input Password one more time." />
+                        </div>
+                        <label for="Age" className={css.SUInputLabel}><span>Select Age</span></label>
+                        <div>
+                            <select className={css.AgeSelect} id="Age" name="age" onChange={this._handleAgeChange} defaultValue="20">
+                                <option value="10">10대</option>
+                                <option value="20">20대</option>
+                                <option value="30">30대</option>
+                                <option value="40">40대</option>
+                                <option value="50">50대</option>
+                                <option value="60">60대</option>
+                                <option value="70">70대</option>
+                                <option value="80">80대</option>
+                            </select>
+                        </div>
+                        <input type="button" className={css.SignButton} value="Create New Account" onClick={this._handleSubmit} />
+                        <div className={css.InUpLink}>
+                            <p>If you already have account, <Link href="/signin"><a>Sign in</a></Link>.</p>
+                        </div>
                     </form>
                 </div>
             </Layout>

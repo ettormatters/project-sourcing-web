@@ -15,7 +15,7 @@ class SignIn extends React.Component {
     render(){
         return(
             <Layout>
-                <form className={css.SignIn}>
+                <form className={css.Sign}>
                     <div className={css.SignInInput}>
                         <input className={css.SIInputItem} type="text" placeholder="ID" />
                     </div>
@@ -27,9 +27,9 @@ class SignIn extends React.Component {
                             <input type="checkbox" value="true" id="SetCheck" className={css.SetCheck} />
                             <label for="SetCheck" className={css.SetLabel}><span>Set State Sign In.</span></label>
                         </div>
-                        <Link href="/signup"><a className={css.SignInUp}>Sign up</a></Link>
+                        <Link href="/signup"><a className={css.InUpLink}>Sign up</a></Link>
                     </div>
-                    <button type="submit" className={css.SignInButton}>Sign In</button>
+                    <button type="submit" className={css.SignButton}>Sign In</button>
                     <div className={css.SignInApi}>
                         <p>Sign in APIs.</p>
                     </div>
