@@ -14,9 +14,7 @@ class SignUp extends React.Component {
             nickName: "",
             email: "",
             pw: "",
-            age: "20",
-            nickOver: false,
-            emailOver: false
+            age: "20"
         }
 
         this._handleNickChange = this._handleNickChange.bind(this);
@@ -24,6 +22,7 @@ class SignUp extends React.Component {
         this._handlePassChange = this._handlePassChange.bind(this);
         this._handleAgeChange = this._handleAgeChange.bind(this);
         this._nickOverlap = this._nickOverlap.bind(this);
+        this._emailOverlap = this._emailOverlap.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
     }
 
@@ -60,7 +59,6 @@ class SignUp extends React.Component {
     }
 
     async _handleSubmit(event) {
-
         if(this.state.nickName == "") {
             alert("nickName 입력하세요");
         } else if(this.state.email == "") {
@@ -68,18 +66,14 @@ class SignUp extends React.Component {
         } else if(this.state.pw == "") {
             alert("pw 입력하세요");
         } else {
-             //if nickname 중복검사  -> graphQL query <= axios 같은 처리로 못할까? <= 가능
-            console.log(await this._nickOverlap(this.state.nickName))
-             //if(this._nickOverlap(this.state.nickName)){}
-
+            if(await this._nickOverlap(this.state.nickName)){
+                alert("nickName이 중복되었습니다.");
+            } else if(await this._emailOverlap(this.state.email)){
+                alert("email이 중복되었습니다.");
+            } else {
+                //
+            }
         }
-
-       
-        //각각 이상없으면 check state 변화
-
-
-        //if email 중복검사  -> graphQL query
-        //각각 이상없으면 check state 변화
 
         //age number 로 parse 해야함
 
@@ -89,7 +83,7 @@ class SignUp extends React.Component {
         //input xsscripting 방지.
     }
 
-    _nickOverlap(nick) {
+    async _nickOverlap(nick) {
         let variables = {
             nick: nick,
         }
@@ -104,20 +98,48 @@ class SignUp extends React.Component {
             }
         `
 
-        let result = axios({
+        let result = await axios({
             url: 'http://localhost:4000/graphql',
             method: 'post',
             //headers:  {'Content-Type': 'application/json'}
-            data: { query, variables } //JSON.stringify({})
+            data: { query, variables }
         })
 
-        return result; // status , data.data
-        /*
-        if(result == null){
+        if(result.data.data.nickOverlap == null) {
+            return false 
+        } else {
+            return true 
+        }
+    }
 
-        } else if()
-        */
-}
+    async _emailOverlap(email) {
+        let variables = {
+            email: email,
+        }
+
+        let query = `
+            query overEmail ($email: String!){
+                emailOverlap(input:
+                    {email: $email}
+                ){
+                    email
+                }
+            }
+        `
+
+        let result = await axios({
+            url: 'http://localhost:4000/graphql',
+            method: 'post',
+            //headers:  {'Content-Type': 'application/json'}
+            data: { query, variables }
+        })
+
+        if(result.data.data.emailOverlap == null){
+            return false 
+        } else {
+            return true 
+        }
+    }
 
     render(){
         return(
