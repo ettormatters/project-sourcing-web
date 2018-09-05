@@ -1,4 +1,6 @@
 import React from 'react'
+let crypto = require("crypto");
+let randomBytes = require('randombytes');
 import axios from 'axios'
 import Link from 'next/link'
 
@@ -14,6 +16,7 @@ class SignUp extends React.Component {
             nickName: "",
             email: "",
             pw: "",
+            repw: "",
             age: "20"
         }
 
@@ -21,6 +24,7 @@ class SignUp extends React.Component {
         this._handleEmailChange = this._handleEmailChange.bind(this);
         this._handlePassChange = this._handlePassChange.bind(this);
         this._handleAgeChange = this._handleAgeChange.bind(this);
+        this._handleRePassChange = this._handleRePassChange.bind(this);
         this._nickOverlap = this._nickOverlap.bind(this);
         this._emailOverlap = this._emailOverlap.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
@@ -58,28 +62,81 @@ class SignUp extends React.Component {
         })
     }
 
+    _handleRePassChange(event) {
+        let rePw = event.target.value
+
+        this.setState({
+            repw : rePw
+        })
+    }
+
     async _handleSubmit(event) {
+
         if(this.state.nickName == "") {
-            alert("nickName 입력하세요");
+            alert("nickName 입력하세요.");
         } else if(this.state.email == "") {
-            alert("email 입력하세요");
+            alert("email 입력하세요.");
         } else if(this.state.pw == "") {
-            alert("pw 입력하세요");
+            alert("pw 입력하세요.");
+        } else if(this.state.pw != this.state.repw){
+            alert("pw가 동일하지 않습니다.")
         } else {
             if(await this._nickOverlap(this.state.nickName)){
                 alert("nickName이 중복되었습니다.");
             } else if(await this._emailOverlap(this.state.email)){
                 alert("email이 중복되었습니다.");
             } else {
-                //
+                let nickName = this.state.nickName;
+                let email = this.state.email;
+                let ageInt = parseInt(this.state.age);
+                
+                crypto.randomBytes(64, (err, buf) => {
+                    crypto.pbkdf2(`${this.state.pw}`, buf.toString('base64'), 100298, 64, 'sha512', async (err, key) => {
+                        let pwHash = key.toString('base64');
+
+                        let variables = {
+                            nick: nickName,
+                            email: email,
+                            pw: pwHash,
+                            age: ageInt
+                        }
+
+                        let query = `
+                            mutation NewUser($nick: String!, $email: String!, $pw: String!, $age: Int!){
+                                createUser(input:{
+                                    nickName: $nick
+                                    email: $email
+                                    pw: $pw
+                                    age: $age
+                                }){
+                                    id
+                                    nickName
+                                    email
+                                    pw
+                                    age
+                                }
+                            }
+                        `
+
+                        let result = await axios({
+                            url: 'http://localhost:4000/graphql',
+                            method: 'post',
+                            //headers:  {'Content-Type': 'application/json'}
+                            data: { query, variables }
+                        })
+                
+                        if(result.data.data.createUser == null) {
+                            alert("회원가입 오류");
+                        } else {
+                            location.replace("http://localhost:3000/success_secret");
+                            return true;
+                        }
+
+                    });   
+                })
             }
         }
 
-        //age number 로 parse 해야함
-
-        //axios -> graphQL mutation (pw 는 hash-salt 변환)
-
-        //redirect? 뒤로가기 못하게.
         //input xsscripting 방지.
     }
 
@@ -134,7 +191,7 @@ class SignUp extends React.Component {
             data: { query, variables }
         })
 
-        if(result.data.data.emailOverlap == null){
+        if(result.data.data.emailOverlap == null) {
             return false 
         } else {
             return true 
@@ -160,7 +217,7 @@ class SignUp extends React.Component {
                         </div>
                         <label htmlFor="PWcheck" className={css.SUInputLabel}><span>Check Password</span></label>
                         <div className={css.SignUpInput}>
-                            <input className={css.SUInputItem} id="PWcheck" name="pwcheck" type="password" placeholder="Input Password one more time." />
+                            <input className={css.SUInputItem} id="PWcheck" name="pwcheck" type="password" placeholder="Input Password one more time." onChange={this._handleRePassChange} />
                         </div>
                         <label htmlFor="Age" className={css.SUInputLabel}><span>Select Age</span></label>
                         <div>
