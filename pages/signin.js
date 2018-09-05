@@ -25,7 +25,7 @@ class SignIn extends React.Component {
                     <div className={css.AfterInput}>
                         <div className={css.SetSignIn}>
                             <input type="checkbox" value="true" id="SetCheck" className={css.SetCheck} />
-                            <label for="SetCheck" className={css.SetLabel}><span>Set State Sign In.</span></label>
+                            <label htmlFor="SetCheck" className={css.SetLabel}><span>Set State Sign In.</span></label>
                         </div>
                         <Link href="/signup"><a className={css.InUpLink}>Sign up</a></Link>
                     </div>

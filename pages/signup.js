@@ -124,23 +124,23 @@ class SignUp extends React.Component {
             <Layout>
                 <div>
                     <form className={css.Sign} onSubmit={this._handleSubmit}>
-                        <label for="Nickname" className={css.SUInputLabel}><span>Nickname</span></label>
+                        <label htmlFor="Nickname" className={css.SUInputLabel}><span>Nickname</span></label>
                         <div className={css.SignUpInput}>
                             <input className={css.SUInputItem} id="Nickname" name="nickName" type="text" onChange={this._handleNickChange} />
                         </div>
-                        <label for="Email" className={css.SUInputLabel}><span>Your Email</span></label>
+                        <label htmlFor="Email" className={css.SUInputLabel}><span>Your Email</span></label>
                         <div className={css.SignUpInput}>
                             <input className={css.SUInputItem} id="Email" name="email" type="email" onChange={this._handleEmailChange} />
                         </div>
-                        <label for="Password" className={css.SUInputLabel}><span>Password</span></label>
+                        <label htmlFor="Password" className={css.SUInputLabel}><span>Password</span></label>
                         <div className={css.SignUpInput}>
                             <input className={css.SUInputItem} id="Password" name="password" type="password" placeholder="8~16 letters" onChange={this._handlePassChange} />
                         </div>
-                        <label for="PWcheck" className={css.SUInputLabel}><span>Check Password</span></label>
+                        <label htmlFor="PWcheck" className={css.SUInputLabel}><span>Check Password</span></label>
                         <div className={css.SignUpInput}>
                             <input className={css.SUInputItem} id="PWcheck" name="pwcheck" type="password" placeholder="Input Password one more time." />
                         </div>
-                        <label for="Age" className={css.SUInputLabel}><span>Select Age</span></label>
+                        <label htmlFor="Age" className={css.SUInputLabel}><span>Select Age</span></label>
                         <div>
                             <select className={css.AgeSelect} id="Age" name="age" onChange={this._handleAgeChange} defaultValue="20">
                                 <option value="10">10대</option>
