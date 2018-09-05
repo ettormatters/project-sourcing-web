@@ -5,6 +5,139 @@
     align-items: flex-start;
 }
 
+/*signin*/
+.Sign {
+    background-color: white;
+    border-radius: 5px;
+    padding: 40px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.25);
+    width:300px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 75px;
+    margin-bottom: 100px;
+}
+
+.SignInInput {
+    position: relative;
+    height: 38px;
+    width: 300px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    line-height: 1.5;
+}
+
+.SIInputItem {
+    padding: 8px 10px 5px 10px;
+    line-height: 25px;
+    width: 280px;
+    cursor: text;
+    border: 0;
+}
+
+.SIInputItem::-webkit-input-placeholder {
+    font-size: 16px;
+}
+
+.AfterInput {
+    display: flex;
+    width: 300px;
+}
+
+.SetSignIn {
+    margin-bottom: 8px;
+    flex: 60%;
+}
+
+.SetCheck {
+    width: 13px;
+    height: 13px;
+    vertical-align: middle;
+}
+
+.SetLabel {
+    display: inline;
+    font-size: 13px;
+    color: rgb(110, 110, 110);
+}
+
+.InUpLink {
+    margin-top: 3.5px;
+    margin-bottom: 4.5px;
+    margin-right: 2px;
+    flex: 40%;
+    text-align: end;
+    justify-content: flex-end;
+    font-size: 13px;
+    color: rgb(110, 110, 110);
+}
+
+.SignButton {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 16px;
+    width: 300px;
+    height: 50px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+}
+
+.SignInApi {
+    width: 300px;
+    height: 100px;
+    border: 1px solid #ddd;
+}
+
+/*signup*/
+/*.Sign_signin*/
+
+.SUInputLabel {
+    color: #535353;
+}
+
+.SignUpInput {
+    height: 32px;
+    width: 300px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.SUInputItem {
+    padding: 7px 10px 0px 10px;
+    line-height: 25px;
+    width: 280px;
+    cursor: text;
+    border: 0;
+    font-size: 16px;
+}
+
+.SUInputItem::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #B3B3B3;
+}
+
+.AgeSelect {
+    height: 38px;
+    width: 300px;
+    margin-top: 8px;
+    margin-bottom: 28px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #535353;
+    padding-left: 10px;
+    line-height: 1.5;
+}
+
+/*SignButton_signin*/
+
+/*InUpLink_signin*/
+
 /*Category*/
 .CategoryBox {
     margin-top: 30px;
@@ -238,6 +371,7 @@
 .Post {
     background-color: white;
     border-radius: 5px;
+    border: 1px solid white;
 
     transition-property: transform, box-shadow, margin, opacity, width;
     transition-duration: 200ms;
@@ -258,6 +392,7 @@
 
 .Post:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+    border: 1px solid #ddd;
     height: 255px;
 }
 

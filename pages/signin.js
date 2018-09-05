@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
+import Link from 'next/link';
 import Layout from '../components/Layout'
+import css from '../style/hwistyle.css'
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -13,13 +15,25 @@ class SignIn extends React.Component {
     render(){
         return(
             <Layout>
-                <div>
-                    ID <input type="text" placeholder="ID" />  <br/>
-                    PW <input type="password" placeholder="PW" /> <br/>
-                </div>
-                <style jsx>{`
-                
-                `}</style>
+                <form className={css.Sign}>
+                    <div className={css.SignInInput}>
+                        <input className={css.SIInputItem} type="text" placeholder="ID" />
+                    </div>
+                    <div className={css.SignInInput}>
+                        <input className={css.SIInputItem} type="password" placeholder="PW" />
+                    </div>
+                    <div className={css.AfterInput}>
+                        <div className={css.SetSignIn}>
+                            <input type="checkbox" value="true" id="SetCheck" className={css.SetCheck} />
+                            <label for="SetCheck" className={css.SetLabel}><span>Set State Sign In.</span></label>
+                        </div>
+                        <Link href="/signup"><a className={css.InUpLink}>Sign up</a></Link>
+                    </div>
+                    <button type="submit" className={css.SignButton}>Sign In</button>
+                    <div className={css.SignInApi}>
+                        <p>Sign in APIs.</p>
+                    </div>
+                </form>
             </Layout>
         );
     }
