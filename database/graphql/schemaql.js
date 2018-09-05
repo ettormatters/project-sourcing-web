@@ -1,10 +1,19 @@
 var { buildSchema } = require('graphql');
 
 const schemaQL = buildSchema(`
+    input Nick {
+        nickName: String!
+    }
+
+    input Email {
+        email: String!
+    }
+
     input SignUpInput {
         nickName: String!
         email: String!
         pw: String!
+        age: Int!
     }
 
     input PostInput {
@@ -36,6 +45,7 @@ const schemaQL = buildSchema(`
         nickName: String!
         email: String!
         pw: String!
+        age: Int!
         info: Info
     }
 
@@ -64,6 +74,8 @@ const schemaQL = buildSchema(`
     }
 
     type Query {
+        nickOverlap(input: Nick): User
+        emailOverlap(input: Email): User
         getInitialPosts: [Post]
         getUpdatePosts(cateCheck: cateCheck!): [Post]
         getByTitle(titleInput: Title): Post

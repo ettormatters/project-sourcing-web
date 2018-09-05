@@ -49,19 +49,19 @@ class aPostView extends React.Component {
             }
         `
         request('http://localhost:4000/graphql', initQuery, variables)
-            .then((data)=>{
-                let init = data.getByTitle;
+        .then((data)=>{
+            let init = data.getByTitle;
 
-                this.setState((prevState, props) => {
-                    this.state.post = init;
-                    this.state.category = init.data.category;
-                    this.state.oneLine = init.data.oneLine;
-                    this.state.desc = init.data.desc;
-                    this.state.hashTag = init.data.hashTag;
-                    this.state.memberNumber = init.data.memberNumber;
-                    return true;
-               });
+            this.setState((prevState, props) => {
+                this.state.post = init;
+                this.state.category = init.data.category;
+                this.state.oneLine = init.data.oneLine;
+                this.state.desc = init.data.desc;
+                this.state.hashTag = init.data.hashTag;
+                this.state.memberNumber = init.data.memberNumber;
+                return true;
             });
+        });
     }
 
     render(){
