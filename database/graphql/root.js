@@ -1,6 +1,49 @@
 const Post = require('../mongoose/PostSchema');
+const User = require('../mongoose/UserSchema');
 
 const root = {
+  nickOverlap: ({input}) => {
+    let query = {
+      "nickName": input.nickName
+    }
+
+    let result = User.findOne(query);
+
+    return result
+  },
+
+  emailOverlap: ({input}) => {
+    let query = {
+      "email": input.email
+    }
+
+    let result = User.findOne(query);
+    
+    return result
+  },
+
+  createUser: ({input}) => {
+    let newUser;
+    newUser = new User();
+
+    let id = require('crypto').randomBytes(10).toString('hex');
+    newUser.id = id;
+    newUser.nickName = input.nickName;
+    newUser.email = input.email;
+    newUser.pw = input.pw;
+    newUser.age = input.age;
+    newUser.date = new Date();
+
+    newUser.save(function(err){
+        if(err){
+          console.error(err);
+          return err;
+        }
+      });
+
+    return newUser;
+  },
+
   getInitialPosts: async () => {
     let recentAll = await Post.find().sort({date: -1});
 

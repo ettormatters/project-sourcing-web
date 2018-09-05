@@ -1,6 +1,21 @@
 var { buildSchema } = require('graphql');
 
 const schemaQL = buildSchema(`
+    input Nick {
+        nickName: String!
+    }
+
+    input Email {
+        email: String!
+    }
+
+    input SignUpInput {
+        nickName: String!
+        email: String!
+        pw: String!
+        age: Int!
+    }
+
     input PostInput {
         partyHead: String!
         author: String
@@ -25,12 +40,19 @@ const schemaQL = buildSchema(`
         title: String!
     }
 
-    type Data {
-        category: String
-        oneLine: String
-        desc: String
-        hashTag: String
-        memberNumber: Int
+    type User {
+        id: String!
+        nickName: String!
+        email: String!
+        pw: String!
+        age: Int!
+        info: Info
+    }
+
+    type Info {
+        intro: String
+        hashTag: [String]
+        location: String
     }
 
     type Post {
@@ -43,7 +65,17 @@ const schemaQL = buildSchema(`
         date: String
     }
 
+    type Data {
+        category: String
+        oneLine: String
+        desc: String
+        hashTag: String
+        memberNumber: Int
+    }
+
     type Query {
+        nickOverlap(input: Nick): User
+        emailOverlap(input: Email): User
         getInitialPosts: [Post]
         getUpdatePosts(cateCheck: cateCheck!): [Post]
         getByTitle(titleInput: Title): Post
@@ -51,6 +83,7 @@ const schemaQL = buildSchema(`
     }
 
     type Mutation {
+        createUser(input: SignUpInput): User
         createPost(input: PostInput): Post
         updatePost(input: PostInput): Post
         updateClap(titleInput: Title): Post

@@ -2,27 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
-
-    //id: String
-    //nickName
-    //email
-    //pw
-    //age
-    //date
-
-    //profile image
-    //소개글
-    //능력치 []
-    //지역 , 
-
     id: String,
     nickName: String,
     email: String,
     pw: String,
-    data: {
-        image: Buffer,
+    age: Number,
+    info: {
+        //image: Buffer,
         intro: String,
-        hashTag: String,
+        hashTag: [String],
         location: String
     },
     date: Date
