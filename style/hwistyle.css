@@ -1,3 +1,5 @@
+/**********pages**********/
+
 /*index*/
 .Container {
     display: flex;
@@ -9,67 +11,67 @@
 .Sign {
     background-color: white;
     border-radius: 5px;
-    padding: 40px;
+    padding: 36px;
     border: 1px solid #ddd;
     box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.25);
-    width:300px;
+    width: 270px;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 75px;
-    margin-bottom: 100px;
+    margin-top: 67.5px;
+    margin-bottom: 90px;
 }
 
 .SignInInput {
     position: relative;
-    height: 38px;
-    width: 300px;
-    margin-bottom: 8px;
+    height: 34.2px;
+    width: 270px;
+    margin-bottom: 7.2px;
     border: 1px solid #ddd;
     line-height: 1.5;
 }
 
 .SIInputItem {
-    padding: 8px 10px 5px 10px;
-    line-height: 25px;
-    width: 280px;
+    padding: 7.2px 9px 4.5px 9px;
+    line-height: 22.5px;
+    width: 252px;
     cursor: text;
     border: 0;
 }
 
 .SIInputItem::-webkit-input-placeholder {
-    font-size: 16px;
+    font-size: 14.5px;
 }
 
 .AfterInput {
     display: flex;
-    width: 300px;
+    width: 270px;
 }
 
 .SetSignIn {
-    margin-bottom: 8px;
+    margin-bottom: 7.2px;
     flex: 60%;
 }
 
 .SetCheck {
-    width: 13px;
-    height: 13px;
+    width: 11.7px;
+    height: 11.7px;
     vertical-align: middle;
 }
 
 .SetLabel {
     display: inline;
-    font-size: 13px;
+    font-size: 12px;
     color: rgb(110, 110, 110);
 }
 
 .InUpLink {
-    margin-top: 3.5px;
-    margin-bottom: 4.5px;
-    margin-right: 2px;
+    margin-top: 3.15px;
+    margin-bottom: 4.05px;
+    margin-right:1.8px;
     flex: 40%;
     text-align: end;
     justify-content: flex-end;
-    font-size: 13px;
+    font-size: 12px;
     color: rgb(110, 110, 110);
 }
 
@@ -78,10 +80,10 @@
     border-radius: 4px;
     background-color: #000000;
     color: #FFFFFF;
-    font-size: 16px;
-    width: 300px;
-    height: 50px;
-    margin-bottom: 8px;
+    font-size: 14.5px;
+    width: 270px;
+    height: 45px;
+    margin-bottom: 7.2px;
     font-weight: bold;
     vertical-align: middle;
     text-align: center;
@@ -89,8 +91,8 @@
 }
 
 .SignInApi {
-    width: 300px;
-    height: 100px;
+    width: 270px;
+    height: 90px;
     border: 1px solid #ddd;
 }
 
@@ -102,35 +104,35 @@
 }
 
 .SignUpInput {
-    height: 32px;
-    width: 300px;
-    margin-bottom: 15px;
+    height: 28.8px;
+    width: 270px;
+    margin-bottom: 13.5px;
     border-bottom: 1px solid #ddd;
 }
 
 .SUInputItem {
-    padding: 7px 10px 0px 10px;
-    line-height: 25px;
-    width: 280px;
+    padding: 6.3px 9px 0px 9px;
+    line-height: 22.5px;
+    width: 252px;
     cursor: text;
     border: 0;
-    font-size: 16px;
+    font-size: 14.5px;
 }
 
 .SUInputItem::-webkit-input-placeholder {
-    font-size: 14px;
+    font-size: 12.5px;
     color: #B3B3B3;
 }
 
 .AgeSelect {
-    height: 38px;
-    width: 300px;
-    margin-top: 8px;
-    margin-bottom: 28px;
+    height: 34.2px;
+    width: 270px;
+    margin-top: 7.2px;
+    margin-bottom: 25.2px;
     border: 1px solid #ddd;
-    font-size: 14px;
+    font-size: 12.5px;
     color: #535353;
-    padding-left: 10px;
+    padding-left: 9px;
     line-height: 1.5;
 }
 
@@ -138,12 +140,15 @@
 
 /*InUpLink_signin*/
 
+
+/**********components**********/
+
 /*Category*/
 .CategoryBox {
-    margin-top: 30px;
-    margin-right: 40px;
-    margin-bottom: 10px;
-    padding: 10px;
+    margin-top: 24px;
+    margin-right: 28px;
+    margin-bottom: 8px;
+    padding: 8px;
     background-color: white;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -151,16 +156,16 @@
 }
 
 .CategoryOrder {
-    width: 170px;
-    margin-bottom: 10px;
+    width: 145px;
+    margin-bottom: 8px;
 }
 
 .OrderItem {
     border: 1px solid #ddd;
-    font-size: 15px;
+    font-size: 12px;
     color: #535353;
-    padding-left: 10px;
-    height: 38px;
+    padding-left: 8px;
+    height: 30px;
     width: 100%;
     border-radius: 4px;
 }
@@ -170,37 +175,37 @@
 }
 
 .CategoryList {
-    padding: 10px;
-    max-width: 170px;
+    padding: 8px;
+    max-width: 145px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
 @media screen and (max-width: 992px) {
     .CategoryBox {
-        margin-top: 30px;
-        margin-right: 10px;
-        margin-bottom: 10px;
+        margin-top: 24px;
+        margin-right: 8px;
+        margin-bottom: 8px;
     }
 }
 
 @media screen and (max-width: 600px) {
     .CategoryBox {
-        margin-top: 30px;
+        margin-top: 24px;
         margin-right: 0px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 }
 
 /*CheckBox*/
 .ListItem {
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 12px;
     color: #535353;
 }
 
 .ListItem:hover {
-    color: #595959;
+    color: #000000;
     background-color: #E6E6E6;
 }
 
@@ -240,8 +245,12 @@
     display: flex;
 }
 
-.Logo {
+.LogoBox {
     flex: 20%;
+}
+
+.Logo {
+    height: 40px;
 }
 
 .NavBar {
@@ -251,7 +260,7 @@
 }
 
 .Option {
-    margin: 15px;
+    margin: 20px 15px 10px 15px;
     color: #a6a6a6;
     opacity: 1.0;
     transition: color 0.2s ease;
@@ -263,10 +272,15 @@
     opacity: 1.0;
 }
 
+.OptionText {
+    font-size: 14px;
+}
+
 .DropdownOption {
-    margin: 15px;
+    margin: 20px 15px 10px 15px;
     text-decoration: none; 
     position: relative;
+    
 }
 
 .Summary {
@@ -290,33 +304,33 @@
 }
 
 .ArrowShadow {
-    height: 17px;
+    height: 15px;
     position: absolute;
     display: inline-block;
     z-index: 150;
-    top: 18.3px;
-    right: -0.75px;
+    top: 17px;
+    right: 0.5px;
     left: auto;
-    opacity: 0.15;
+    opacity: 0.18;
 }
 
 .Arrow {
     position: absolute;
     display: inline-block;
     z-index: 300;
-    top: 20px;
+    top: 18px;
     right: 0;
     left: auto;
 }
 
 .DetailsMenu {
     z-index: 200;
-    width: 150px;
-    margin-top: 8px;
+    width: 135px;
+    margin-top: 7.2px;
     position: absolute;
     top: 110%;
-    right: -15px;
-    padding: 5px 0;
+    right: -13.5px;
+    padding: 4.5px 0;
     list-style: none;
     background-color: #fff;
     border: 1px solid rgba(27,31,35,0.15);
@@ -333,14 +347,14 @@
     color: #24292e;
     display: block;
     text-decoration: none;
-    padding: 4px 15px;
-    font-size: 14px;
+    padding: 3.6px 13.5px;
+    font-size: 12.6px;
 }
 
 .Divider {
     list-style: none;
     height: 1px;
-    margin: 8px 1px;
+    margin: 7.2px 1px;
     background-color: #e1e4e8;
 }
 
@@ -358,7 +372,7 @@
 
 /*Layout*/
 .Layout {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 /*Post*/
@@ -370,12 +384,12 @@
     transition-property: transform, box-shadow, margin, opacity, width;
     transition-duration: 200ms;
 
-    margin: 10px;
-    padding-right: 20px;
+    margin: 8px;
+    padding-right: 16px;
     padding-bottom: 0px;
-    padding-left: 20px;
-    height: 255px;
-    min-width: 700px; /*screen size*/
+    padding-left: 16px;
+    height: 204px;
+    min-width: 560px; /*screen size*/
     
     position: relative;
 }
@@ -387,7 +401,7 @@
 .Post:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
     border: 1px solid #ddd;
-    height: 255px;
+    height: 204px;
 }
 
 .Post:hover .Popup {
@@ -395,8 +409,8 @@
 }
 
 .ItemBox {
-    height: 218px;
-    margin: 20px 0;
+    height: 174.4px;
+    margin: 16px 0;
     position: relative;
 }
 
@@ -409,70 +423,70 @@
 }
 
 .Text {
-    margin-left: 10px;
-    max-width: 640px;
+    margin-left: 8px;
+    max-width: 512px;
 }
 
 .Hide {
-    font-size: 13px;
+    font-size: 10px;
     visibility: hidden;
 }
 
 .Icon {
-    width: 50px;
-    height: 55px;
+    width: 40px;
+    height: 44px;
     border-radius: 5px;
 }
 
 .Category {
-    font-size: 13px;
+    font-size: 10px;
     text-transform: uppercase;
     color: rgba(0,0,0,.54);
 }
 
 .Title {
-    font-size: 24px;
+    font-size: 19px;
     font-weight: bold;
 }
 
 .Info {
-    font-size: 13px;
+    font-size: 10px;
     color: rgba(0,0,0,.84);
 }
 
 .Content {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .OneLine {
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .Desc {
-    font-size: 13px;
+    font-size: 10px;
 }
 
 .HashTagBox .HashTag:link, .HashTagBox .HashTag:visited {
-    font-size: 13px;
+    font-size: 10px;
     color: #707070;
     text-decoration: none;
 }
 
 .HashTagBox .HashTag:hover, .HashTagBox .HashTag:active {
-    font-size: 15px;
+    font-size: 12px;
     color: black;
     text-decoration: none;
 }
 
 .PostFooter {
-    font-size: 12px;
+    font-size: 9px;
     color: #C4C4C4;
     text-align: right;
     margin: 0;
     position: absolute;
-    bottom: 25px;
-    right: 20px;
+    bottom: 20px;
+    right: 16px;
 }
 
 .WantedBox, .ClapBox {
@@ -481,30 +495,30 @@
 }
 
 .WantedItem {
-    width:16px;
+    width:12.8px;
     position: absolute;
     bottom: 0;
-    right: 7px;
+    right: 5.6px;
 }
 
 .ClapOff {
     display: inline;
     background-color: transparent;
     border: none;
-    width: 35px;
-    margin-left: 10px;
+    width: 28px;
+    margin-left: 8px;
 }
 
 .OffItem {
-    width: 16px;
+    width: 13px;
     transition: width 0.2s ease;
     position: absolute;
     bottom: 0;
-    right: 5px;
+    right: 4px;
 }
 
 .ClapOff:hover .OffItem{
-    width: 29px;
+    width: 23.2px;
     cursor: pointer;
 }
 
@@ -512,47 +526,45 @@
     display: none;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 794px) {
     .Post {
-        min-width: 600px;
+        min-width: 480px;
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 640px) {
     .Post {
-        min-width: 450px;
+        min-width: 360px;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 480px) {
     .Post {
-        min-width: 300px;
+        min-width: 240px;
     }
 }
 
 /*PostView*/
 .PostView {
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 21px;
+    margin-bottom: 8px;
     margin-left: 0px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    max-width: 700px;
+    max-width: 560px;
 }
 
 @media screen and (max-width: 992px) {
     .PostView {
-        margin-top: 30px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 }
 
 @media screen and (max-width: 600px) {
     .PostView {
-        margin-top: 30px;
-        margin-bottom: 10px;
-        min-width: 390px;
+        margin-bottom: 18px;
+        min-width: 310px;
     }
 }
 
