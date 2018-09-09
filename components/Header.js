@@ -9,19 +9,19 @@ class Header extends React.Component {
     render(){
         return(
             <div className={css.Header}>
-                <div className={css.Logo}>
-                    <img src={`${publicRuntimeConfig.staticFolder}/image/Logo.png`} alt="logo"/>
+                <div className={css.LogoBox}>
+                    <img className={css.Logo} src={`${publicRuntimeConfig.staticFolder}/image/Logo.png`} alt="logo"/>
                 </div> 
                 <div className={css.NavBar}>
                     <Link href="/">
-                        <a className={css.Option}>Stage</a>
+                        <a className={css.Option+' '+css.OptionText}>Stage</a>
                     </Link>
                     <Link href="/about">
-                        <a className={css.Option}>About</a>
+                        <a className={css.Option+' '+css.OptionText}>About</a>
                     </Link>
                     <div className={css.DropdownOption}>
                         <details className={css.Details}>
-                            <summary className={css.Summary}>Title</summary>
+                            <summary className={css.Summary+' '+css.OptionText}>Title</summary>
                                 <img className={css.ArrowShadow} src={`${publicRuntimeConfig.staticFolder}/image/arrowshadow.png`}/>
                                 <img className={css.Arrow} src={`${publicRuntimeConfig.staticFolder}/image/arrow.png`}/>
                                 <ul className={css.DetailsMenu}>

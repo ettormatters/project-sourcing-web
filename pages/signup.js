@@ -177,7 +177,7 @@ class SignUp extends React.Component {
                         </div>
                         <input type="button" className={css.SignButton} value="Create New Account" onClick={this._handleSubmit} />
                         <div className={css.InUpLink}>
-                            <p>If you already have account, <Link href="/signin"><a>Sign in</a></Link>.</p>
+                            <p>If you already have an account, <Link href="/signin"><a>Sign in</a></Link>.</p>
                         </div>
                     </form>
                 </div>
