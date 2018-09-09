@@ -2,6 +2,11 @@ const Post = require('../mongoose/PostSchema');
 const User = require('../mongoose/UserSchema');
 
 const root = {
+  signIn: ({input}) => {
+    //email 탐지
+      // (중첩) pw 탐지
+  },
+
   nickOverlap: ({input}) => {
     let query = {
       "nickName": input.nickName

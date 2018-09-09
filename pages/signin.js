@@ -7,9 +7,26 @@ class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ID: "",
-            PW: ""
+            email: "",
+            pw: ""
         }
+        this._handleEMAILInput = this._handleEMAILInput.bind(this);
+    }
+
+    _handleEMAILInput(event) {
+        let email = event.target.value;
+
+        this.setState({
+          email : email
+        });
+    }
+
+    _handlePWInput(event) {
+        let pw = event.target.value;
+
+        this.setState({
+          pw : pw
+        });
     }
 
     render(){
@@ -17,10 +34,10 @@ class SignIn extends React.Component {
             <Layout>
                 <form className={css.Sign}>
                     <div className={css.SignInInput}>
-                        <input className={css.SIInputItem} type="text" placeholder="ID" />
+                        <input className={css.SIInputItem} type="text" placeholder="EMAIL" onChange={this._handleEMAILInput}/>
                     </div>
                     <div className={css.SignInInput}>
-                        <input className={css.SIInputItem} type="password" placeholder="PW" />
+                        <input className={css.SIInputItem} type="password" placeholder="PW" onChange={this._handlePWInput} />
                     </div>
                     <div className={css.AfterInput}>
                         <div className={css.SetSignIn}>
@@ -29,7 +46,7 @@ class SignIn extends React.Component {
                         </div>
                         <Link href="/signup"><a className={css.InUpLink}>Sign up</a></Link>
                     </div>
-                    <button type="submit" className={css.SignButton}>Sign In</button>
+                    <button type="button" className={css.SignButton}>Sign In</button>
                     <div className={css.SignInApi}>
                         <p>Sign in APIs.</p>
                     </div>
@@ -41,6 +58,6 @@ class SignIn extends React.Component {
 
 export default SignIn
 
-//graphql query 나 mutation 둘다 상황에 불필요하므로, 그냥 mongoose schema found 로 return 처리 하는게 좋겠군.
+//graphql schema design
 //crypto , salt , 단방향 암호화 이후 검사
 //email , pw -> mongoose -> return
