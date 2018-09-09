@@ -40,3 +40,7 @@ class SignIn extends React.Component {
 }
 
 export default SignIn
+
+//graphql query 나 mutation 둘다 상황에 불필요하므로, 그냥 mongoose schema found 로 return 처리 하는게 좋겠군.
+//crypto , salt , 단방향 암호화 이후 검사
+//email , pw -> mongoose -> return
