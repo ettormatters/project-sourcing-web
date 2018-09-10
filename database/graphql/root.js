@@ -1,10 +1,55 @@
 const Post = require('../mongoose/PostSchema');
 const User = require('../mongoose/UserSchema');
+const jwt = require('jsonwebtoken');
+const { secret } = require('../../config.js');
 
 const root = {
-  signIn: ({input}) => {
-    //email 탐지
-      // (중첩) pw 탐지
+  signIn: async ({input}) => {
+    
+    let query = {
+      "email": input.email
+    }
+
+    let status;
+    let res;
+
+    await User.findOne(query, async (err,user) => {
+      if(user == null) {
+        console.log("email not found")
+        status =  404
+      } else {
+        if(user.pw != input.pw){
+          console.log("user" + user.pw)
+          console.log(input.pw)
+          console.log("pw not matched")
+          status =  405
+        } else {
+          await jwt.sign(
+            {
+                id: user.id,
+                nickName: user.nickName
+            }, 
+            secret, 
+            {
+              expiresIn: '7d',
+              issuer: 'PARTYPPLEcomp',
+              subject: 'userAuth'
+            }, (err, token) => {
+              if (err) {
+                console.log(err);
+                status = 406
+              }
+              status = 202
+              res = token;
+            })
+        }
+      }
+    })
+
+    return { 
+      status: status,
+      token: res 
+    }
   },
 
   nickOverlap: ({input}) => {
@@ -144,9 +189,3 @@ const root = {
 };
 
 module.exports = root;
-
-/*
-if(Post.find({"title":`${input.title}`})){
-  return null;
-} else {}
-*/

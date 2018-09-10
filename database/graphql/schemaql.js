@@ -45,6 +45,11 @@ const schemaQL = buildSchema(`
         title: String!
     }
 
+    type Token {
+        status: Int
+        token: String
+    }
+
     type User {
         id: String!
         nickName: String!
@@ -79,7 +84,7 @@ const schemaQL = buildSchema(`
     }
 
     type Query {
-        signIn(input: SignInInput): User
+        signIn(input: SignInInput): Token
         nickOverlap(input: Nick): User
         emailOverlap(input: Email): User
         getInitialPosts: [Post]
