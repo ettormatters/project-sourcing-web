@@ -18,37 +18,41 @@ const root = {
         console.log("email not found")
         status =  404
       } else {
-        if(user.pw != input.pw){
-          console.log("user" + user.pw)
-          console.log(input.pw)
-          console.log("pw not matched")
-          status =  405
-        } else {
-          await jwt.sign(
-            {
-                id: user.id,
-                nickName: user.nickName
-            }, 
-            secret, 
-            {
-              expiresIn: '7d',
-              issuer: 'PARTYPPLEcomp',
-              subject: 'userAuth'
-            }, (err, token) => {
-              if (err) {
-                console.log(err);
-                status = 406
-              }
-              status = 202
-              res = token;
-            })
-        }
+        let hashed;
+
+        await crypto.pbkdf2(input.pw, user.salt, 100298, 64, 'sha512', async (err, key) => {
+          hashed = key.toString('base64');
+
+          if(user.pw != hashed){
+            console.log("pw not matched")
+            status =  405
+          } else {
+            await jwt.sign(
+              {
+                  id: user.id,
+                  nickName: user.nickName
+              }, 
+              secret, 
+              {
+                expiresIn: '7d',
+                issuer: 'PARTYPPLEcomp',
+                subject: 'userAuth'
+              }, (err, token) => {
+                if (err) {
+                  console.log(err);
+                  status = 406
+                }
+                status = 202
+                res = token;
+              })
+          }
+        });
       }
     })
 
-    return { 
+    return {
       status: status,
-      token: res 
+      token: res
     }
   },
 
@@ -80,7 +84,16 @@ const root = {
     newUser.id = id;
     newUser.nickName = input.nickName;
     newUser.email = input.email;
-    newUser.pw = input.pw;
+    
+    crypto.randomBytes(64, (err, buf) => {
+      let salt = buf.toString('base64');
+      crypto.pbkdf2(`${input.pw}`, salt , 100298, 64, 'sha512', async (err, key) => {
+          let pwHash = key.toString('base64');
+          newUser.pw = pwHash;
+          newUser.salt = salt;
+      });   
+    })
+
     newUser.age = input.age;
     newUser.date = new Date();
 

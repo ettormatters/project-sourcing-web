@@ -88,52 +88,43 @@ class SignUp extends React.Component {
             } else {
                 let nickName = this.state.nickName;
                 let email = this.state.email;
+                let pw = this.state.pw;
                 let ageInt = parseInt(this.state.age);
-                
-                crypto.randomBytes(64, (err, buf) => {
-                    crypto.pbkdf2(`${this.state.pw}`, buf.toString('base64'), 100298, 64, 'sha512', async (err, key) => {
-                        let pwHash = key.toString('base64');
 
-                        let variables = {
-                            nick: nickName,
-                            email: email,
-                            pw: pwHash,
-                            age: ageInt
+                let variables = {
+                    nick: nickName,
+                    email: email,
+                    pw: pw,
+                    age: ageInt
+                }
+
+                let query = `
+                    mutation NewUser($nick: String!, $email: String!, $pw: String!, $age: Int!){
+                        createUser(input:{
+                            nickName: $nick
+                            email: $email
+                            pw: $pw
+                            age: $age
+                        }){
+                            id
+                            nickName
                         }
+                    }
+                `
 
-                        let query = `
-                            mutation NewUser($nick: String!, $email: String!, $pw: String!, $age: Int!){
-                                createUser(input:{
-                                    nickName: $nick
-                                    email: $email
-                                    pw: $pw
-                                    age: $age
-                                }){
-                                    id
-                                    nickName
-                                    email
-                                    pw
-                                    age
-                                }
-                            }
-                        `
-
-                        let result = await axios({
-                            url: 'http://localhost:4000/graphql',
-                            method: 'post',
-                            //headers:  {'Content-Type': 'application/json'}
-                            data: { query, variables }
-                        })
-                
-                        if(result.data.data.createUser == null) {
-                            alert("회원가입 오류");
-                        } else {
-                            location.replace("http://localhost:3000/success_secret");
-                            return true;
-                        }
-
-                    });   
+                let result = await axios({
+                    url: 'http://localhost:4000/graphql',
+                    method: 'post',
+                    //headers:  {'Content-Type': 'application/json'}
+                    data: { query, variables }
                 })
+        
+                if(result.data.data.createUser == null) {
+                    alert("회원가입 오류");
+                } else {
+                    location.replace("http://localhost:3000/success_secret");
+                    return true;
+                }
             }
         }
 
