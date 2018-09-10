@@ -11,6 +11,7 @@ import Layout from '../components/Layout';
 import StageBanner from '../components/StageBanner';
 import Category from '../components/Category';
 import PostView from '../components/PostView';
+import Rank from '../components/Rank';
 
 import css from '../style/hwistyle.css';
 
@@ -72,7 +73,8 @@ class Index extends React.Component {
                     <StageBanner />
                     <div className={css.Container}>
                         <Category selChange={this._orderSelectOnChange} />
-                        <PostView/>
+                        <PostView />
+                        <Rank />
                     </div>
                     <style jsx global>{`
                         body {
