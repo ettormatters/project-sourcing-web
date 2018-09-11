@@ -1,6 +1,8 @@
 const Post = require('../mongoose/PostSchema');
 const User = require('../mongoose/UserSchema');
 const jwt = require('jsonwebtoken');
+const crypto = require("crypto");
+const randomBytes = require('randombytes');
 const { secret } = require('../../config.js');
 
 const root = {
@@ -19,34 +21,32 @@ const root = {
         status =  404
       } else {
         let hashed;
-
-        await crypto.pbkdf2(input.pw, user.salt, 100298, 64, 'sha512', async (err, key) => {
-          hashed = key.toString('base64');
-
-          if(user.pw != hashed){
-            console.log("pw not matched")
-            status =  405
-          } else {
-            await jwt.sign(
-              {
-                  id: user.id,
-                  nickName: user.nickName
-              }, 
-              secret, 
-              {
-                expiresIn: '7d',
-                issuer: 'PARTYPPLEcomp',
-                subject: 'userAuth'
-              }, (err, token) => {
-                if (err) {
-                  console.log(err);
-                  status = 406
-                }
-                status = 202
-                res = token;
-              })
-          }
-        });
+        let salt = user.salt;
+        let pw = input.pw;
+        hashed = crypto.pbkdf2Sync(pw, salt , 100298, 64, 'sha512').toString('base64');
+        if(user.pw != hashed){
+          console.log("pw not matched")
+          status =  405
+        } else {
+          await jwt.sign(
+            {
+              id: user.id,
+              nickName: user.nickName
+            }, 
+            secret, 
+            {
+              expiresIn: '7d',
+              issuer: 'PARTYPPLEcomp',
+              subject: 'userAuth'
+            }, (err, token) => {
+              if (err) {
+                console.log(err);
+                status = 406
+              }
+              status = 202
+              res = token;
+            })
+        }
       }
     })
 
@@ -79,31 +79,28 @@ const root = {
   createUser: ({input}) => {
     let newUser;
     newUser = new User();
-
-    let id = require('crypto').randomBytes(10).toString('hex');
+    let id = crypto.randomBytes(10).toString('hex');
+    let salt;
+    let pwHash;
     newUser.id = id;
     newUser.nickName = input.nickName;
     newUser.email = input.email;
-    
-    crypto.randomBytes(64, (err, buf) => {
-      let salt = buf.toString('base64');
-      crypto.pbkdf2(`${input.pw}`, salt , 100298, 64, 'sha512', async (err, key) => {
-          let pwHash = key.toString('base64');
-          newUser.pw = pwHash;
-          newUser.salt = salt;
-      });   
-    })
-
     newUser.age = input.age;
     newUser.date = new Date();
 
-    newUser.save(function(err){
-        if(err){
-          console.error(err);
-          return err;
-        }
-      });
+    salt = crypto.randomBytes(64).toString('base64');
+    pwHash = crypto.pbkdf2Sync(`${input.pw}`, salt, 100298, 64, 'sha512').toString('base64');
 
+    newUser.salt = salt;
+    newUser.pw = pwHash;
+
+    newUser.save(function(err){
+      if(err){
+        console.error(err);
+        return err;
+      }
+    });
+ 
     return newUser;
   },
 

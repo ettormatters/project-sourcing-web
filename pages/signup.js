@@ -1,6 +1,6 @@
 import React from 'react'
-let crypto = require("crypto");
-let randomBytes = require('randombytes');
+const crypto = require("crypto");
+const randomBytes = require('randombytes');
 import axios from 'axios'
 import Link from 'next/link'
 
@@ -91,10 +91,12 @@ class SignUp extends React.Component {
                 let pw = this.state.pw;
                 let ageInt = parseInt(this.state.age);
 
+                let hashed = await crypto.createHash('sha512').update(pw).digest('base64');
+                
                 let variables = {
                     nick: nickName,
                     email: email,
-                    pw: pw,
+                    pw: hashed,
                     age: ageInt
                 }
 
@@ -118,7 +120,7 @@ class SignUp extends React.Component {
                     //headers:  {'Content-Type': 'application/json'}
                     data: { query, variables }
                 })
-        
+                console.log(result)
                 if(result.data.data.createUser == null) {
                     alert("회원가입 오류");
                 } else {
